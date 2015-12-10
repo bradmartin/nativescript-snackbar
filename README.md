@@ -34,7 +34,3 @@ exports.buttonTap = function(args){
             .show();
   };
             
-```
-iOS | Android
------------- | -------------
-![iOS](/ios.png) | ![Android](/android.png)
