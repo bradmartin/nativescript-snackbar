@@ -1,0 +1,25 @@
+{
+  "name": "nativescript-snackbar",
+  "version": "0.0.1",
+  "description": "A NativeScript plugin providing the Material Design SnackBar.",
+  "main": "index.js",
+  "nativescript": {
+    "id": "org.nativescript.snackbar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradmartin/nativescript-snackbar"
+  },
+  "keywords": [
+    "NativeScript",
+	"native",
+	"script",
+    "snackbar",
+    "android",
+	"ios"
+  ],
+  "author": "Brad Martin <bradmartin0905@gmail.com> (https://github.com/bradmartin)",
+  "license": "Apache-2.0",
+  "bugs": "https://github.com/bradmartin/nativescript-snackbar/issues",
+  "homepage": "https://github.com/bradmartin/nativescript-snackbar"
+}
