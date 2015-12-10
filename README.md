@@ -33,7 +33,7 @@ exports.loaded = function(args) {
 exports.simple = function(args) {
    var snackText = "I Love NativeScript!";
    //Call the simpleSnackbar() method on the nativescript-snackbar module
-   snackbar(page, snackText);
+   snackbar.simpleSnackbar(page, snackText);
 };
 
 // .actionSnackbar(View page, string snackText, int hideDelay, string actionText, function actionTextClickFunction)
