@@ -60,7 +60,7 @@ exports.actionSnack = function(args) {
    snackbar.action(options);
    
 };
-
+```
 simple | action
 ------------ | -------------
 ![iOS](/simple.png) | ![Android](/action.png)
