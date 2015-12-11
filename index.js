@@ -4,14 +4,13 @@ var frame = require('ui/frame');
 // .simple(string snackText) is the simplest method available to construct a native snackbar
 exports.simple = function (snackText) {
 
-    if (snackText) {
+    if (app.android && snackText) {
         // Create the native snackbar
         var snackbar = android.support.design.widget.Snackbar;
         // Now call the snackbar .make() and .show() methods
         snackbar.make(frame.topmost().currentPage.android, snackText, 3000)
                 .show();
     } else {
-        console.log("No snackText sent to .simple() method.");
         return;
     };
 
