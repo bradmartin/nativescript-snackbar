@@ -10,6 +10,7 @@ Make sure that your build.gradle file has the Design library dependency
 
 ```
 compile "com.android.support:design:ver"
+```
 
 ## Usage
 
