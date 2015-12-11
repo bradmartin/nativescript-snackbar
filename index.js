@@ -31,7 +31,7 @@ exports.actionSnackbar = function(page, snackText, hideDelay, actionText, action
             // Create the native snackbar
              var snackbar = android.support.design.widget.Snackbar;
              
-            // Last, use the .make(), .setAction() methods to add text and functionality to the snackbar.
+            // Use the .make(), .setAction() methods to add text and functionality to the snackbar.
             snackbar.make(page.android, text, delay)
                 .setAction(actionText, listener)
                 .show();
