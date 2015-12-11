@@ -9,7 +9,7 @@ Use the Material Design Snackbar in your Android {N} app.
 Make sure that your build.gradle file has the Design library dependency
 
 ```
-compile "com.android.support:design:ver"
+compile "com.android.support:design:$version"
 ```
 
 ## Usage
