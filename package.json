@@ -14,11 +14,13 @@
   },
   "keywords": [
     "NativeScript",
-	"native",
-	"script",
+	  "native",
+	  "script",
     "snackbar",
     "android",
-	"ios"
+    "ios",
+    "bradmartin",
+    "Thorum"
   ],
   "author": "Brad Martin <bradmartin0905@gmail.com> (https://github.com/bradmartin)",
   "license": "Apache-2.0",
