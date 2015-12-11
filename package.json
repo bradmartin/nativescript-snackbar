@@ -4,7 +4,9 @@
   "description": "A NativeScript plugin providing the Material Design SnackBar.",
   "main": "index.js",
   "nativescript": {
-    "id": "org.nativescript.snackbar"
+    "platforms": {
+      "android": "1.5.0"
+    }
   },
   "repository": {
     "type": "git",

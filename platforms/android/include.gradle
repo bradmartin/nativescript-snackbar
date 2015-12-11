@@ -1,0 +1,12 @@
+android {
+  productFlavors {
+    "nativescript-snackbar" {
+      dimension "nativescript-snackbar"
+    }
+  }
+}
+
+//optional elements
+dependencies {
+     compile 'com.android.support:design:22.2.0'
+}
