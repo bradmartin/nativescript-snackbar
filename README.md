@@ -41,3 +41,8 @@ exports.actionSnack = function(args) {
    // Call the .action() method on the nativescript-snackbar module
    snackbar.action(options);   
 };
+
+```
+Simple Snackbar | Action Snackbar
+------------ | -------------
+![iOS](/simple.png) | ![Android](/action.png)
