@@ -1,6 +1,7 @@
 # NativeScript Snackbar
 
-A NativeScript plugin providing the Material Design SnackBar.
+Use the Material Design Snackbar in your Android {N} app.
+*Currently looking for a good cocoapod for iOS*
 
 ## Installation
 `npm install nativescript-snackbar`
@@ -45,4 +46,4 @@ exports.actionSnack = function(args) {
 ```
 Simple Snackbar | Action Snackbar
 ------------ | -------------
-![iOS](/simple.png) | ![Android](/action.png)
+![Simple](/simple.png) | ![Action](/action.png)
