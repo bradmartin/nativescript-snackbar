@@ -1,8 +1,6 @@
 # NativeScript Snackbar
 
-```
 Use the Material Design Snackbar in your Android {N} app.
-```
 *Currently looking for a good cocoapod for iOS*
 
 ## Installation
