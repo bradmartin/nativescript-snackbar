@@ -1,6 +1,6 @@
 {
   "name": "nativescript-snackbar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A NativeScript plugin providing the Material Design SnackBar.",
   "main": "index.js",
   "nativescript": {
@@ -14,8 +14,8 @@
   },
   "keywords": [
     "NativeScript",
-	  "native",
-	  "script",
+    "native",
+    "script",
     "snackbar",
     "android",
     "ios",
