@@ -1,20 +1,22 @@
 var app = require("application");
+var frame = require('ui/frame');
 
-// .simple(View page, string snackText) is the simplest method available to construct a native snackbar
-exports.simple = function (page, snackText) {
+// .simple(string snackText) is the simplest method available to construct a native snackbar
+exports.simple = function (snackText) {
 
-    if (page.android && snackText) {
-
+    if (app.android && snackText) {
         // Create the native snackbar
         var snackbar = android.support.design.widget.Snackbar;
         // Now call the snackbar .make() and .show() methods
-        snackbar.make(page.android, snackText, 3000)
+        snackbar.make(frame.topmost().currentPage.android, snackText, 3000)
                 .show();
-    }
+    } else {
+        return;
+    };
 
 };
 
-// exports.actionSnackbar = function(page, snackText, hideDelay, actionText, actionClickFunction) {
+// exports.actionSnackbar = function(snackText, hideDelay, actionText, actionClickFunction) {
 exports.action = function (options) {
         try {
             // Just making sure we are on Android for the native approach
@@ -22,10 +24,10 @@ exports.action = function (options) {
             if (app.android) {
 
                 // Make sure user sent actionText and actionClickFunction
-                // if undefined then we will pass the page, snackText arguments to the simple() method.
+                // if undefined then we will pass the snackText argument to the simple() method.
                 if (!options.actionText || !options.actionClickFunction) {
                     console.log("No actionText or actionClickFunction sent in the options. Falling back to .simple() method");
-                    exports.simple(options.page, options.snackText);
+                    exports.simple(options.snackText);
                 } else {
 
                     // Create the OnClickListener for the Action of the Snackbar
@@ -45,7 +47,7 @@ exports.action = function (options) {
                     var snackbar = android.support.design.widget.Snackbar;
 
                     // Use the .make(), .setAction() methods to add text and functionality to the snackbar.
-                    snackbar.make(options.page.android, options.snackText, options.hideDelay)
+                    snackbar.make(frame.topmost().currentPage.android, options.snackText, options.hideDelay)
                                                .setAction(options.actionText, listener)
                                                .show();
 
