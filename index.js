@@ -1,7 +1,4 @@
 var app = require("application");
-var uicoreview = require("ui/core/view");
-var uicoreproxy = require("ui/core/proxy");
-var result;
 
 // .simple(View page, string snackText) is the simplest method available to construct a native snackbar
 exports.simple = function (page, snackText) {
