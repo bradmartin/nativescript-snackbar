@@ -21,9 +21,15 @@
     "android",
     "ios",
     "bradmartin",
-    "Thorum"
+    "Thorum",
+    "sitefintysteve"
   ],
   "author": "Brad Martin <bradmartin0905@gmail.com> (https://github.com/bradmartin)",
+   "contributors": [{
+    "name": "Steve McNiven-Scott",
+    "email": "steve@sitefinitysteve.com",
+    "url": "https://github.com/sitefinitysteve" 
+  }],
   "license": "Apache-2.0",
   "bugs": "https://github.com/bradmartin/nativescript-snackbar/issues",
   "homepage": "https://github.com/bradmartin/nativescript-snackbar"
