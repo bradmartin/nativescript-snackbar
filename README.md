@@ -6,15 +6,7 @@ Use the Material Design Snackbar in your Android {N} app.
 ## Installation
 `npm install nativescript-snackbar`
 
-Make sure that your build.gradle file has the Design library dependency
-
-```
-compile "com.android.support:design:$version"
-```
-
 ## Usage
-
-
 
 ###
 ```XML
@@ -36,20 +28,24 @@ exports.simpleSnack = function(args) {
 };
 
 exports.actionSnack = function(args) {
-   var options = {};
-   // The snackText here is the main text to display with the snackbar.
-   options.snackText = "Emails Deleted.";   
-   // The android snackbar has a default of 3000ms before it hides.
-   options.hideDelay = 3000;   
-   // The actionText will appear on the right side and is interactive if the user taps it before the snackbar hides
-   options.actionText = "UNDO";   
-   // Action text click function
-   options.actionClickFunction = function () {
-      alert('Action clicked.');
-   };    
+    var options = {
+        snackText: "Emails Deleted.", // The snackText here is the main text to display with the snackbar.
+        actionText: "UNDO", // The actionText will appear on the right side and is interactive if the user taps it before the snackbar hides
+        hideDelay: 3000, // The android snackbar has a default of 3000ms before it hides.
+        
+        // Action text click function
+        actionClickFunction: function () {
+            viewModel.message = "ACTION!";
+        }
+    };
+
    // Call the .action() method on the nativescript-snackbar module
    snackbar.action(options);   
 };
+
+exports.dismissSnack = function(args) {
+   snackbar.dismiss();
+}
 
 ```
 Simple Snackbar | Action Snackbar
