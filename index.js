@@ -1,16 +1,40 @@
 var app = require("application");
 var frame = require('ui/frame');
+var snackbar = null;
 
 // .simple(string snackText) is the simplest method available to construct a native snackbar
 exports.simple = function (snackText) {
-
-    if (app.android && snackText) {
-        // Create the native snackbar
-        var snackbar = android.support.design.widget.Snackbar;
-        // Now call the snackbar .make() and .show() methods
-        snackbar.make(frame.topmost().currentPage.android, snackText, 3000)
-                .show();
+    var duration = 3000;
+    
+    if (app.android) {
+        if(snackText){
+            // Create the native snackbar
+            
+            // Now call the snackbar .make() and .show() methods
+            snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, snackText, duration);
+            snackbar.show();
+        }
     } else {
+
+        try{
+            snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
+                snackText,
+                "Close",
+                duration / 1000,
+                function(args){
+                    //Action, Do Nothing, just close it
+                    snackbar.dismiss()
+                },
+                function(args){
+                    //Dismissal, Do Nothing
+                }
+            )
+
+            snackbar.show();
+        }catch(args){
+            console.log(args);
+        }
+        
         return;
     };
 
@@ -19,8 +43,11 @@ exports.simple = function (snackText) {
 // exports.actionSnackbar = function(snackText, hideDelay, actionText, actionClickFunction) {
 exports.action = function (options) {
         try {
-            // Just making sure we are on Android for the native approach
-            // Will see about integrating a cocoapod for iOS version
+            // Check for hideDelay - required
+            if (!options.hideDelay) {
+                options.hideDelay = 3000;
+            }
+
             if (app.android) {
 
                 // Make sure user sent actionText and actionClickFunction
@@ -38,24 +65,45 @@ exports.action = function (options) {
                         });
                     }
 
-                    // Check for hideDelay - required
-                    if (!options.hideDelay) {
-                        options.hideDelay = 3000;
-                    }
-
-                    // Create the native snackbar
-                    var snackbar = android.support.design.widget.Snackbar;
 
                     // Use the .make(), .setAction() methods to add text and functionality to the snackbar.
-                    snackbar.make(frame.topmost().currentPage.android, options.snackText, options.hideDelay)
-                                               .setAction(options.actionText, listener)
-                                               .show();
-
+                     snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, options.snackText, options.hideDelay);
+                     snackbar.setAction(options.actionText, listener);
+                     snackbar.show();                 
                 };
 
+            }else{
+               //IOS
+                  snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
+                            options.snackText,
+                            options.actionText,
+                            options.hideDelay / 1000,
+                            options.actionClickFunction,
+                            function(args){
+                                //Dismissal, not available on android...
+                            }
+            )
+
+            snackbar.show();
             };
         } catch (ex) {
             console.log(ex);
         }
 
 };
+
+exports.dismiss = function (options) {
+    if(snackbar !== null || snackbar != "undefined"){
+        if (app.android) {
+            snackbar.dismiss();
+        }
+        else{
+            //iOS
+            snackbar.dismiss();
+        }
+    }   
+}
+
+exports.getSnackbar = function(){
+    return snackbar;
+}
