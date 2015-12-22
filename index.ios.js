@@ -3,23 +3,30 @@
 // .simple(string: snackText) is the simplest method available to construct a native snackbar
 exports.simple = function (snackText) {
     return new Promise(function (resolve, reject) {
+        var timeout = 3; 
         
         try {
             snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
                 snackText,
                 getActionText(),
-                3,
+                timeout,
                 function (args) {
                     //Action, Do Nothing, just close it
                     snackbar.dismiss(); //Force close
                     resolve({
-                        action: "Closed"
+                        command: "Dismiss",
+                        reason: "Forced",
+                        snackbar: snackbar,
+                        event: args
                     });
                 },
                 function (args) {
                     //Dismissal, Do Nothing
                     resolve({
-                        action: "Timeout"
+                        command: "Dismiss",
+                        reason: "Timeout",
+                        snackbar: snackbar,
+                        event: args
                     });
                 }
             );
@@ -51,12 +58,17 @@ exports.action = function (options) {
                 options.hideDelay / 1000,
                 function(args){
                     resolve({
-                        command: "Action"
+                        command: "Action",
+                        snackbar: snackbar,
+                        event: args
                     });
                 },
                 function(args){
                     resolve({
-                        command: "Dismiss"
+                        command: "Dismiss",
+                        reason: "Timeout",
+                        snackbar: snackbar,
+                        event: args
                     });
                 }
                 );
@@ -72,8 +84,8 @@ exports.action = function (options) {
 }
 
 exports.dismiss = function (options) {
-    if (snackbar !== null || snackbar != "undefined") {
-        return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
+    if (snackbar !== null && snackbar != "undefined") {
             try{
                 snackbar.dismiss();
                 
@@ -81,7 +93,9 @@ exports.dismiss = function (options) {
                 setTimeout(function(){
                     resolve(
                     {
-                        action: "Dismissed"
+                        action: "Dismiss",
+                        reason: "Forced",
+                        snackbar: snackbar
                     });
                 }, 200);
             }
@@ -90,12 +104,14 @@ exports.dismiss = function (options) {
                 reject(ex);
             }
                
-        });
-    }
-}
-
-exports.getSnackbar = function () {
-    return snackbar;
+        }else{
+            resolve(
+            {
+                action: "None",
+                message: "No actionbar to dismiss"
+            });
+        }
+    });
 }
 
 function getActionText(){
@@ -105,4 +121,8 @@ function getActionText(){
     }else{
          return "Close";   
     }
+}
+
+exports.getSnackbar = function () {
+    return snackbar;
 }

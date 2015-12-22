@@ -14,6 +14,7 @@ Use the Material Design Snackbar in your {N} app.
    <StackLayout>
      <Button text="Show Simple Snack" tap="simpleSnack" />
      <Button text="Show Action Snack" tap="actionSnack" />
+     <Button text="Hide Snack" tap="dismissSnack" />
    </StackLayout>
 </Page>
 ```
@@ -29,6 +30,7 @@ exports.simpleSnack = function(args) {
 };
 
 exports.actionSnack = function(args) {
+    //Set the options
     var options = {
         // The snackText here is the main text to display with the snackbar. (REQUIRED)
         snackText: "Emails Deleted.", 
@@ -37,22 +39,18 @@ exports.actionSnack = function(args) {
         // The actionText will appear on the right side and is interactive if the user taps it before the snackbar hides (REQUIRED, if null defaults to .SIMPLE snackbar)
         actionText: "UNDO",
         actionTextColor: "#FF4081", // ANDROID ONLY (OPTIONAL)
-        // Action text click function (REQUIRED)
-        actionClickFunction: function () {
-            viewModel.message = "DO NOT DELETE";
-        },
-        // Dismissal Callback (OPTIONAL) - use this to follow through with the intent that showed the snackbar.
-        // Think in terms of deleting something, the snackbar gives the user a few seconds to think about
-        // the action and time to prevent it if needed. So if they do not interact with the snackbar
-        // this function will be triggered
-        dismissalCallback: function() {
-            viewModel.message = "DELETE ITEMS";
-        }
     };
 
-   // Call the .action() method on the nativescript-snackbar module
-   snackbar.action(options).then(function(result) {
-        console.log(result);
+   // Open the snackbar
+   snackbar.action(options)
+        .then(function(args){
+               //Returns a promise
+                if(args.command == "Action"){
+                    //Action
+                }else {
+                    //Dismissal or timeout
+                }  
+            });
     });   
 };
 
