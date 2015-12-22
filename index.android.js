@@ -6,7 +6,6 @@ var snackbar = null;
 exports.simple = function (snackText) {
     return new Promise(function (resolve, reject) {
         try {
-
             if (snackText) {
                 var timeout = 3000; 
                 
@@ -17,9 +16,10 @@ exports.simple = function (snackText) {
                 
                 var snackCallback = android.support.design.widget.Snackbar.Callback.extend({
                     onDismissed: function (snackbar, event) {
+                        console.log("Simple Snack onDismissed event: " + event);
                         resolve({
                                 command: "Dismiss",
-                                reason: "Timeout",
+                                reason: getReason(event),
                                 snackbar: snackbar,
                                 event: event
                             });
@@ -84,12 +84,13 @@ exports.action = function (options) {
             
             var snackCallback = android.support.design.widget.Snackbar.Callback.extend({
                 onDismissed: function (snackbar, event) {
+                    console.log("Action Snack onDismissed event: " + event);
                     if (event == 2) {
                         //event 2 is TIMEOUT (no user interaction)
                         console.log("Dismiss from timeout");
                         resolve({
                             command: "Dismiss",
-                            reason: "Timeout",
+                            reason: getReason(event),
                             snackbar: snackbar,
                             event: event
                         });
@@ -128,7 +129,7 @@ exports.dismiss = function (options) {
                     resolve(
                     {
                         action: "Dismissed",
-                        reason: "Forced",
+                        reason: getReason(3),
                         snackbar: snackbar
                     });
                 }, 200);
@@ -150,4 +151,22 @@ exports.dismiss = function (options) {
 
 exports.getSnackbar = function () {
     return snackbar;
+}
+
+function getReason(value){
+    if(value == 1){
+        return "Action";
+    }
+    else if(value == 4){
+        return "Consecutive";
+    }
+    else if(value == 3){
+        return "Manual";
+    }
+    else if(value == 0){
+        return "Swipe";
+    }
+    else if(value == 2){
+        return "Timeout";
+    }
 }

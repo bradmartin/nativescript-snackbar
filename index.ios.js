@@ -15,8 +15,8 @@ exports.simple = function (snackText) {
                     snackbar.dismiss(); //Force close
                     resolve({
                         command: "Dismiss",
-                        reason: "Forced",
-                        snackbar: snackbar,
+                        reason: "Manual",
+                        snackbar: snackbdebuggar,
                         event: args
                     });
                 },
@@ -94,7 +94,7 @@ exports.dismiss = function (options) {
                     resolve(
                     {
                         action: "Dismiss",
-                        reason: "Forced",
+                        reason: "Manual",
                         snackbar: snackbar
                     });
                 }, 200);
