@@ -1,7 +1,7 @@
 # NativeScript Snackbar
 
-Use the Material Design Snackbar in your Android {N} app.
-*Currently looking for a good cocoapod for iOS*
+Use the Material Design Snackbar in your {N} app.
+*iOS uses a 'SSSnackbar' cocoapod - https://github.com/stonesam92/SSSnackbar
 
 ## Installation
 `npm install nativescript-snackbar`
@@ -22,9 +22,8 @@ Use the Material Design Snackbar in your Android {N} app.
 var snackbar = require("nativescript-snackbar");
 
 exports.simpleSnack = function(args) {
-   var snackText = "I Love NativeScript!";      
    //Call the simple() method on the nativescript-snackbar module
-   snackbar.simple(snackText);   
+   snackbar.simple("I Love NativeScript!");   
 };
 
 exports.actionSnack = function(args) {
