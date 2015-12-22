@@ -99,7 +99,6 @@ exports.getSnackbar = function () {
 }
 
 function getActionText(){
-    debugger;
     var actionText = NSBundle.mainBundle().objectForInfoDictionaryKey("NSSnackBarActionText");
     if(actionText != "" && actionText != null){
         return actionText;
