@@ -23,23 +23,37 @@ var snackbar = require("nativescript-snackbar");
 
 exports.simpleSnack = function(args) {
    //Call the simple() method on the nativescript-snackbar module
-   snackbar.simple("I Love NativeScript!");   
+   snackbar.simple("I Love NativeScript!").then(function(result) {
+        console.log(result);
+    });   
 };
 
 exports.actionSnack = function(args) {
     var options = {
-        snackText: "Emails Deleted.", // The snackText here is the main text to display with the snackbar.
-        actionText: "UNDO", // The actionText will appear on the right side and is interactive if the user taps it before the snackbar hides
-        hideDelay: 3000, // The android snackbar has a default of 3000ms before it hides.
-        
-        // Action text click function
+        // The snackText here is the main text to display with the snackbar. (REQUIRED)
+        snackText: "Emails Deleted.", 
+        // Time in ms before it hides/animates out of view (OPTIONAL).
+        hideDelay: 3000,
+        // The actionText will appear on the right side and is interactive if the user taps it before the snackbar hides (REQUIRED, if null defaults to .SIMPLE snackbar)
+        actionText: "UNDO",
+        actionTextColor: "#FF4081", // ANDROID ONLY (OPTIONAL)
+        // Action text click function (REQUIRED)
         actionClickFunction: function () {
-            viewModel.message = "ACTION!";
+            viewModel.message = "DO NOT DELETE";
+        },
+        // Dismissal Callback (OPTIONAL) - use this to follow through with the intent that showed the snackbar.
+        // Think in terms of deleting something, the snackbar gives the user a few seconds to think about
+        // the action and time to prevent it if needed. So if they do not interact with the snackbar
+        // this function will be triggered
+        dismissalCallback: function() {
+            viewModel.message = "DELETE ITEMS";
         }
     };
 
    // Call the .action() method on the nativescript-snackbar module
-   snackbar.action(options);   
+   snackbar.action(options).then(function(result) {
+        console.log(result);
+    });   
 };
 
 exports.dismissSnack = function(args) {
