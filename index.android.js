@@ -123,7 +123,7 @@ exports.dismiss = function (options) {
             try{
                 snackbar.dismiss();
                 
-                //Return AFTER the item is dismissed, 200ms delay on iOS
+                //Return AFTER the item is dismissed, 200ms delay on android
                 setTimeout(function(){
                     resolve(
                     {
