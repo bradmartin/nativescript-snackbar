@@ -3,23 +3,29 @@
 // .simple(string: snackText) is the simplest method available to construct a native snackbar
 exports.simple = function (snackText) {
     return new Promise(function (resolve, reject) {
-
+        
         try {
             snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
                 snackText,
-                "Close",
+                getActionText(),
                 3,
                 function (args) {
                     //Action, Do Nothing, just close it
-                    snackbar.dismiss()
+                    snackbar.dismiss(); //Force close
+                    resolve({
+                        action: "Closed"
+                    });
                 },
                 function (args) {
                     //Dismissal, Do Nothing
+                    resolve({
+                        action: "Timeout"
+                    });
                 }
             );
 
             snackbar.show();
-            resolve(true);
+            
 
         } catch (ex) {
             console.log(ex);
@@ -43,12 +49,19 @@ exports.action = function (options) {
                 options.snackText,
                 options.actionText,
                 options.hideDelay / 1000,
-                options.actionClickFunction,
-                options.dismissalCallback
+                function(args){
+                    resolve({
+                        command: "Action"
+                    });
+                },
+                function(args){
+                    resolve({
+                        command: "Dismiss"
+                    });
+                }
                 );
 
             snackbar.show();
-            resolve(true);
 
         } catch (ex) {
             console.log(ex);
@@ -60,10 +73,37 @@ exports.action = function (options) {
 
 exports.dismiss = function (options) {
     if (snackbar !== null || snackbar != "undefined") {
-        snackbar.dismiss();
+        return new Promise(function (resolve, reject) {
+            try{
+                snackbar.dismiss();
+                
+                //Return AFTER the item is dismissed, 200ms delay on iOS
+                setTimeout(function(){
+                    resolve(
+                    {
+                        action: "Dismissed"
+                    });
+                }, 200);
+            }
+            catch(ex){
+                console.log(ex);
+                reject(ex);
+            }
+               
+        });
     }
 }
 
 exports.getSnackbar = function () {
     return snackbar;
+}
+
+function getActionText(){
+    debugger;
+    var actionText = NSBundle.mainBundle().objectForInfoDictionaryKey("NSSnackBarActionText");
+    if(actionText != "" && actionText != null){
+        return actionText;
+    }else{
+         return "Close";   
+    }
 }
