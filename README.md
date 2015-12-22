@@ -1,7 +1,7 @@
 # NativeScript Snackbar
 
 Use the Material Design Snackbar in your {N} app.
-*iOS uses a 'SSSnackbar' cocoapod - https://github.com/stonesam92/SSSnackbar
+*iOS uses the 'SSSnackbar' cocoapod - https://github.com/stonesam92/SSSnackbar
 
 ## Installation
 `npm install nativescript-snackbar`
