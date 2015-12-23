@@ -1,3 +1,4 @@
+var app = require('application');
 var frame = require('ui/frame');
 var Color = require("color").Color;
 var snackbar = null;
@@ -62,10 +63,12 @@ exports.action = function (options) {
             // Set the action text, click listener
             snackbar.setAction(options.actionText, listener);
 
-            // Set custom color
-            if (options.actionTextColor) {
-                var color = new Color(options.actionTextColor);
-                snackbar.setActionTextColor(color.android);
+            if(app.android){
+                // Set custom color
+                if (options.actionTextColor) {
+                    var color = new Color(options.actionTextColor);
+                    snackbar.setActionTextColor(color.android);
+                }
             }
             
             var callback = new actionSnackCallback();
