@@ -39,15 +39,16 @@ exports.action = function (options) {
             // if undefined then we will call .simple using the snackText
             if (!options.actionText) {
                 options.actionText = "Close"; //Default value, no need to fallback with promises
-            } 
-            
-            // construct the native snackbar
-            snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, options.snackText, options.hideDelay);
+            }
 
             // Check for hideDelay - required
             if (!options.hideDelay) {
                 options.hideDelay = 3000;
             }
+            
+            // construct the native snackbar
+            snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, options.snackText, options.hideDelay);
+           
 
             // Create the OnClickListener for the Action of the Snackbar
             var listener = new android.view.View.OnClickListener({
