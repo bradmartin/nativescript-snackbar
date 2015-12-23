@@ -14,19 +14,9 @@ exports.simple = function (snackText) {
                 // Create the native snackbar, save the object incase we need to dismiss
                 snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, snackText, timeout);
                 
-                var snackCallback = android.support.design.widget.Snackbar.Callback.extend({
-                    onDismissed: function (snackbar, event) {
-                        console.log("Simple Snack onDismissed event: " + event);
-                        resolve({
-                                command: "Dismiss",
-                                reason: getReason(event),
-                                snackbar: snackbar,
-                                event: event
-                            });
-                    }
-                });
-
-                var callback = new snackCallback();
+                var callback = new simpleSnackCallback();
+                
+                callback.resolve = resolve;
 
                 snackbar.setCallback(callback);
 
@@ -80,33 +70,10 @@ exports.action = function (options) {
                 var color = new Color(options.actionTextColor);
                 snackbar.setActionTextColor(color.android);
             }
-
             
-            var snackCallback = android.support.design.widget.Snackbar.Callback.extend({
-                onDismissed: function (snackbar, event) {
-                    console.log("Action Snack onDismissed event: " + event);
-                    if (event == 2) {
-                        //event 2 is TIMEOUT (no user interaction)
-                        console.log("Dismiss from timeout");
-                        resolve({
-                            command: "Dismiss",
-                            reason: getReason(event),
-                            snackbar: snackbar,
-                            event: event
-                        });
-                    }
-                    else if(event == 1){
-                        //Dismiss via action
-                        console.log("Dismiss callback for action");
-                    }
-                },
-
-                onShown: function (snackbar) { 
-                    
-                }
-            });
-
-            var callback = new snackCallback();
+            var callback = new actionSnackCallback();
+            
+            callback.resolve = resolve;
 
             snackbar.setCallback(callback);
 
@@ -170,3 +137,32 @@ function getReason(value){
         return "Timeout";
     }
 }
+
+
+// Moved the extend OUTSIDE of the function, you only need to extend the callback once...
+var simpleSnackCallback = android.support.design.widget.Snackbar.Callback.extend({
+    resolve: null, 
+       onDismissed: function (snackbar, event) {
+            this.resolve({  
+                    command: "Dismiss",
+                    reason: getReason(event),
+                    snackbar: snackbar,
+                    event: event
+                });             
+        }
+});
+
+
+var actionSnackCallback =  android.support.design.widget.Snackbar.Callback.extend({
+    resolve: null, 
+    onDismissed: function (snackbar, event) {
+        if (event != 1) {
+            this.resolve({
+                command: "Dismiss",
+                reason: getReason(event),
+                snackbar: snackbar,
+                event: event
+            });
+        }
+    }
+});
