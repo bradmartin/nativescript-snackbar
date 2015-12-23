@@ -8,9 +8,7 @@ exports.simple = function (snackText) {
         try {
             if (snackText) {
                 var timeout = 3000; 
-                
-                console.log(snackbar);
-                
+
                 // Create the native snackbar, save the object incase we need to dismiss
                 snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, snackText, timeout);
                 
@@ -53,7 +51,6 @@ exports.action = function (options) {
             // Create the OnClickListener for the Action of the Snackbar
             var listener = new android.view.View.OnClickListener({
                 onClick: function(args){
-                    console.log("Action triggered");
                     resolve({
                         command: "Action",
                         snackbar: snackbar,
