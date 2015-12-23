@@ -1,25 +1,39 @@
 ﻿var snackbar = null;
+var isDismissedManual = false;
 
 // .simple(string: snackText) is the simplest method available to construct a native snackbar
 exports.simple = function (snackText) {
     return new Promise(function (resolve, reject) {
-
+        var timeout = 3; 
+        
         try {
             snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
                 snackText,
-                "Close",
-                3,
+                getActionText(),
+                timeout,
                 function (args) {
                     //Action, Do Nothing, just close it
-                    snackbar.dismiss()
+                    snackbar.dismiss(); //Force close
+                    resolve({
+                        command: "Dismiss",
+                        reason: "Manual",
+                        snackbar: snackbdebuggar,
+                        event: args
+                    });
                 },
                 function (args) {
                     //Dismissal, Do Nothing
+                    resolve({
+                        command: "Dismiss",
+                        reason: "Timeout",
+                        snackbar: snackbar,
+                        event: args
+                    });
                 }
             );
 
             snackbar.show();
-            resolve(true);
+            
 
         } catch (ex) {
             console.log(ex);
@@ -38,17 +52,31 @@ exports.action = function (options) {
             if (!options.hideDelay) {
                 options.hideDelay = 3000;
             }
-
+            
             snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
                 options.snackText,
                 options.actionText,
                 options.hideDelay / 1000,
-                options.actionClickFunction,
-                options.dismissalCallback
+                function(args){
+                    resolve({
+                        command: "Action",
+                        snackbar: snackbar,
+                        event: args
+                    });
+                },
+                function(args){
+                    var reason = (isDismissedManual) ? "Manual" : "Timeout";
+                    isDismissedManual = false; //reset
+                    resolve({
+                        command: "Dismiss",
+                        reason: reason,
+                        snackbar: snackbar,
+                        event: args
+                    });
+                }
                 );
 
             snackbar.show();
-            resolve(true);
 
         } catch (ex) {
             console.log(ex);
@@ -59,8 +87,43 @@ exports.action = function (options) {
 }
 
 exports.dismiss = function (options) {
-    if (snackbar !== null || snackbar != "undefined") {
-        snackbar.dismiss();
+    return new Promise(function (resolve, reject) {
+    if (snackbar !== null && snackbar != "undefined") {
+            try{
+                isDismissedManual = true;
+                snackbar.dismiss();
+                
+                //Return AFTER the item is dismissed, 200ms delay on iOS
+                setTimeout(function(){
+                    resolve(
+                    {
+                        action: "Dismiss",
+                        reason: "Manual",
+                        snackbar: snackbar
+                    });
+                }, 200);
+            }
+            catch(ex){
+                console.log(ex);
+                reject(ex);
+            }
+               
+        }else{
+            resolve(
+            {
+                action: "None",
+                message: "No actionbar to dismiss"
+            });
+        }
+    });
+}
+
+function getActionText(){
+    var actionText = NSBundle.mainBundle().objectForInfoDictionaryKey("NSSnackBarActionText");
+    if(actionText != "" && actionText != null){
+        return actionText;
+    }else{
+         return "Close";   
     }
 }
 
