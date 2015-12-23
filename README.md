@@ -14,14 +14,15 @@ Use the Material Design Snackbar in your {N} app.
 var snackbar = require("nativescript-snackbar");
 ```
 
-Show a simple snackbar with no actions (Except close on iOS, limitation of the Cocoapod)
+### Show a simple snackbar with no actions (Except close on iOS, limitation of the Cocoapod)
 ```
 snackbar.simple("I Love NativeScript!").then(function(result) {
     console.log(result);
 });   
 ```
+#### Note: To change the "Close" text on iOS edit the info.pList
 
-Show a snackbar with Actions
+### Show a snackbar with Actions
 ```
 // Set the options
 var options = {
@@ -47,7 +48,7 @@ snackbar.action(options)
 });   
 ```
 
-Manually Dismiss an active snackbar
+### Manually Dismiss an active snackbar
 ```
 snackbar.dismiss();
 
