@@ -128,7 +128,7 @@ exports.dismiss = function (options) {
                 setTimeout(function(){
                     resolve(
                     {
-                        action: "Dismissed",
+                        action: "Dismiss",
                         reason: getReason(3),
                         snackbar: snackbar
                     });

@@ -1,4 +1,5 @@
 ﻿var snackbar = null;
+var isDismissedManual = false;
 
 // .simple(string: snackText) is the simplest method available to construct a native snackbar
 exports.simple = function (snackText) {
@@ -51,7 +52,7 @@ exports.action = function (options) {
             if (!options.hideDelay) {
                 options.hideDelay = 3000;
             }
-
+            
             snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
                 options.snackText,
                 options.actionText,
@@ -64,9 +65,11 @@ exports.action = function (options) {
                     });
                 },
                 function(args){
+                    var reason = (isDismissedManual) ? "Manual" : "Timeout";
+                    isDismissedManual = false; //reset
                     resolve({
                         command: "Dismiss",
-                        reason: "Timeout",
+                        reason: reason,
                         snackbar: snackbar,
                         event: args
                     });
@@ -87,6 +90,7 @@ exports.dismiss = function (options) {
     return new Promise(function (resolve, reject) {
     if (snackbar !== null && snackbar != "undefined") {
             try{
+                isDismissedManual = true;
                 snackbar.dismiss();
                 
                 //Return AFTER the item is dismissed, 200ms delay on iOS
