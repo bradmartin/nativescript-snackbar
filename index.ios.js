@@ -17,7 +17,7 @@ exports.simple = function (snackText) {
                     resolve({
                         command: "Dismiss",
                         reason: "Manual",
-                        snackbar: snackbdebuggar,
+                        snackbar: snackbar,
                         event: args
                     });
                 },
