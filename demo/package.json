@@ -1,0 +1,15 @@
+{
+	"nativescript": {
+		"id": "org.nativescript.snackbar",
+		"tns-ios": {
+			"version": "1.5.2"
+		},
+		"tns-android": {
+			"version": "1.5.1"
+		}
+	},
+	"dependencies": {
+		"nativescript-snackbar": "file:..",
+		"tns-core-modules": "latest"
+	}
+}

@@ -107,7 +107,7 @@ exports.dismiss = function (options) {
                 reject(ex);
             }
                
-        }else{
+        } else {
             resolve(
             {
                 action: "None",

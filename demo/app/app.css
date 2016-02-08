@@ -1,0 +1,17 @@
+﻿.title {
+    font-size: 26;
+    horizontal-align: center;
+    margin: 20;
+}
+
+button {
+    font-size: 16;
+    horizontal-align: center;
+}
+
+.message {
+    font-size: 20;
+    color: #284848;
+    margin:10;
+    horizontal-align: center;
+}

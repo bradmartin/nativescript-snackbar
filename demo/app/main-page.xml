@@ -1,0 +1,14 @@
+<page xmlns="http://schemas.nativescript.org/tns.xsd"
+      xmlns:SignaturePad="nativescript-signaturepad" loaded="pageLoaded">
+    <page.actionBar>
+    <action-bar title="NativeScript-Snackbar" color="#fff" backgroundColor="#3489db" />
+  </page.actionBar>
+    <scroll-view>
+        <stack-layout> 
+            <button text="Simple Snackbar" tap="simple" />
+            <button text="Action Snackbar" tap="action" />
+
+            <label text="{{ msg }}" class="message" textWrap="true" />
+        </stack-layout>
+    </scroll-view>
+</page>

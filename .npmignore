@@ -2,3 +2,6 @@
 .vs
 .vs/
 nativescript-snackbar.sln
+demo/
+.sln
+*.sln

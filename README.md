@@ -1,29 +1,32 @@
 # NativeScript Snackbar
 
-Use the Material Design Snackbar in your {N} app.
-*iOS uses the 'SSSnackbar' cocoapod - https://github.com/stonesam92/SSSnackbar
+Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod](https://github.com/stonesam92/SSSnackbar)
+
+### Snackbar Usage 
+
+![Snackbar](snackbar.gif)
 
 ## Installation
 `npm install nativescript-snackbar`
 
 ## Usage
 
-
-
-```
+```JS
 var snackbar = require("nativescript-snackbar");
 ```
 
 ### Show a simple snackbar with no actions (Except close on iOS, limitation of the Cocoapod)
-```
+```JS
 snackbar.simple("I Love NativeScript!").then(function(result) {
     console.log(result);
 });   
 ```
-#### Note: To change the "Close" text on iOS edit the info.pList
+
+### Note: To change the "Close" text on iOS edit the info.pList
 
 ### Show a snackbar with Actions
-```
+
+```JS
 // Set the options
 var options = {
     // The snackText here is the main text to display with the snackbar. (REQUIRED)
@@ -49,10 +52,11 @@ snackbar.action(options)
 ```
 
 ### Manually Dismiss an active snackbar
-```
+```JS
 snackbar.dismiss();
-
 ```
-Simple Snackbar | Action Snackbar
------------- | -------------
-![Simple](/simple.png) | ![Action](/action.png)
+
+### Contributors
+
+- Steve McNiven-Scott  [@stevemcniven](https://twitter.com/stevemcniven)
+- Nathanael Anderson [@CongoCart](https://twitter.com/congocart)
