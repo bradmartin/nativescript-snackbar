@@ -1,4 +1,4 @@
-# NativeScript Snackbar
+# NativeScript Snackbar :lollipop: :chocolate_bar:
 
 Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod](https://github.com/stonesam92/SSSnackbar)
 
