@@ -8,19 +8,19 @@ exports.simple = function (snackText) {
     return new Promise(function (resolve, reject) {
         try {
             if (snackText) {
-                var timeout = 3000; 
+                var timeout = 3000;
 
                 // Create the native snackbar, save the object incase we need to dismiss
                 snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, snackText, timeout);
-                
+
                 var callback = new simpleSnackCallback();
-                
+
                 callback.resolve = resolve;
 
                 snackbar.setCallback(callback);
 
                 //Show the snackbar
-                snackbar.show();  
+                snackbar.show();
             } else {
                 reject('no snackText'); //There's a problem, reject the call
             }
@@ -38,17 +38,17 @@ exports.action = function (options) {
             // Make sure user sent actionText and actionClickFunction
             // if undefined then we will call .simple using the snackText
             if (!options.actionText) {
-                options.actionText = "Close"; //Default value, no need to fallback with promises
+                options.actionText = ""; //Default value, no need to fallback with promises
             }
 
             // Check for hideDelay - required
             if (!options.hideDelay) {
                 options.hideDelay = 3000;
             }
-            
+
             // construct the native snackbar
             snackbar = android.support.design.widget.Snackbar.make(frame.topmost().currentPage.android, options.snackText, options.hideDelay);
-           
+
 
             // Create the OnClickListener for the Action of the Snackbar
             var listener = new android.view.View.OnClickListener({
@@ -60,7 +60,7 @@ exports.action = function (options) {
                     });
                 }
             });
-            
+
             // Set the action text, click listener
             snackbar.setAction(options.actionText, listener);
 
@@ -71,9 +71,9 @@ exports.action = function (options) {
                     snackbar.setActionTextColor(color.android);
                 }
             }
-            
+
             var callback = new actionSnackCallback();
-            
+
             callback.resolve = resolve;
 
             snackbar.setCallback(callback);
@@ -91,7 +91,7 @@ exports.dismiss = function (options) {
         if (snackbar) {
             try{
                 snackbar.dismiss();
-                
+
                 //Return AFTER the item is dismissed, 200ms delay on android
                 setTimeout(function(){
                     resolve(
@@ -106,7 +106,7 @@ exports.dismiss = function (options) {
                 console.log(ex);
                 reject(ex);
             }
-               
+
         } else {
             resolve(
             {
@@ -142,20 +142,20 @@ function getReason(value){
 
 // Moved the extend OUTSIDE of the function, you only need to extend the callback once...
 var simpleSnackCallback = android.support.design.widget.Snackbar.Callback.extend({
-    resolve: null, 
+    resolve: null,
        onDismissed: function (snackbar, event) {
-            this.resolve({  
+            this.resolve({
                     command: "Dismiss",
                     reason: getReason(event),
                     snackbar: snackbar,
                     event: event
-                });             
+                });
         }
 });
 
 
 var actionSnackCallback =  android.support.design.widget.Snackbar.Callback.extend({
-    resolve: null, 
+    resolve: null,
     onDismissed: function (snackbar, event) {
         if (event != 1) {
             this.resolve({
