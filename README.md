@@ -5,7 +5,7 @@
 
 Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod](https://github.com/stonesam92/SSSnackbar)
 
-### Snackbar Usage 
+### Snackbar Usage
 
 ![Snackbar](snackbar.gif)
 
@@ -33,7 +33,7 @@ snackbar.simple("I Love NativeScript!").then(function(result) {
 // Set the options
 var options = {
     // The snackText here is the main text to display with the snackbar. (REQUIRED)
-    snackText: "Emails Deleted.", 
+    snackText: "Emails Deleted.",
     // Time in ms before it hides/animates out of view (OPTIONAL).
     hideDelay: 3000,
     // The actionText will appear on the right side and is interactive if the user taps it before the snackbar hides (REQUIRED, if null defaults to .SIMPLE snackbar)
@@ -51,7 +51,6 @@ snackbar.action(options)
                 //Dismissal or timeout
             }  
         });
-});   
 ```
 
 ### Manually Dismiss an active snackbar
