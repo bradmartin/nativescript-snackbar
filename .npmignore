@@ -3,5 +3,10 @@
 .vs/
 nativescript-snackbar.sln
 demo/
+screens/
 .sln
 *.sln
+*.ts
+tsconfig.json
+!index.d.ts
+!snackbar.d.ts

@@ -1,6 +1,8 @@
-﻿# generated files
-.vs
-.vs/
-nativescript-snackbar.sln
-*.sln
-.sln
+﻿*.js
+*.js.map
+*.log
+demo/app/*.js
+demo/*.d.ts
+demo/platforms
+demo/node_modules
+node_modules

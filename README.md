@@ -10,54 +10,67 @@ Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod]
 ![Snackbar](snackbar.gif)
 
 ## Installation
-`npm install nativescript-snackbar`
+`tns plugin add nativescript-snackbar`
 
 ## Usage
 
-```JS
-var snackbar = require("nativescript-snackbar");
-```
 
-### Show a simple snackbar with no actions (Except close on iOS, limitation of the Cocoapod)
-```JS
-snackbar.simple("I Love NativeScript!").then(function(result) {
-    console.log(result);
-});   
+### TS
+
+```TS
+
+import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
+
+// Create an instance of SnackBar
+let snackbar = new SnackBar();
+
+/// Show a simple snackbar with no actions (Except close on iOS, limitation of the Cocoapod)
+public showSimple() {
+    snackbar.simple('Snackbar').then((args) => {
+         this.set('jsonResult', JSON.stringify(args));
+   })
+}
+
+/// Show an Action snack bar
+public showAction() {
+  let options: SnackBarOptions = {
+    actionText: this.get('actionText'),
+    actionTextColor: '#ff4081',
+    snackText: this.get('snackText'),
+    hideDelay: 3500
+  };
+
+  snackbar.action(options).then((args) => {
+    if (args.command === "Action") {
+      this.set('jsonResult', JSON.stringify(args));
+    } else {
+      this.set('jsonResult', JSON.stringify(args));
+    }
+  });
+}
+
 ```
 
 ### Note: To change the "Close" text on iOS edit the info.pList
 
-### Show a snackbar with Actions
 
-```JS
-// Set the options
-var options = {
-    // The snackText here is the main text to display with the snackbar. (REQUIRED)
-    snackText: "Emails Deleted.", 
-    // Time in ms before it hides/animates out of view (OPTIONAL).
-    hideDelay: 3000,
-    // The actionText will appear on the right side and is interactive if the user taps it before the snackbar hides (REQUIRED, if null defaults to .SIMPLE snackbar)
-    actionText: "UNDO",
-    actionTextColor: "#FF4081", // ANDROID ONLY (OPTIONAL), internally checks for android
-};
+### API
 
-// Open the snackbar
-snackbar.action(options)
-        .then(function(args){
-            //Returns a promise
-            if(args.command == "Action"){
-                //Action
-            }else {
-                //Dismissal or timeout
-            }  
-        });
-});   
-```
+- **simple(snackText: string): Promise<any> ** - Show a simple SnackBar.
 
-### Manually Dismiss an active snackbar
-```JS
-snackbar.dismiss();
-```
+- **action(options: SnackBarOptions): Promise<any> ** - Show a SnackBar with Action.
+
+- **dismiss(): Promise<any> ** - Manually dismiss an active SnackBar.
+
+
+### SnackBarOptions Interface
+
+- **actionText: string**
+- **actionTextColor: string**
+- **snackText: string**
+- **hideDelay: number**
+
+
 
 ### Contributors
 
