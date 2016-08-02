@@ -7,7 +7,7 @@ Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod]
 
 ### Snackbar Usage 
 
-![Snackbar](snackbar.gif)
+![Snackbar](./screens/snackbar.gif)
 
 ## Installation
 `tns plugin add nativescript-snackbar`
