@@ -56,11 +56,14 @@ public showAction() {
 
 ### API
 
-- ** simple(snackText: string): Promise<any> ** - Show a simple SnackBar.
+Show a simple SnackBar
+- **simple(snackText: string): Promise<any>**
 
-- ** action(options: SnackBarOptions): Promise<any> ** - Show a SnackBar with Action.
+Show a SnackBar with Action.
+- **action(options: SnackBarOptions): Promise<any>**
 
-- ** dismiss(): Promise<any> ** - Manually dismiss an active SnackBar.
+Manually dismiss an active SnackBar
+- **dismiss(): Promise<any>**
 
 
 ### SnackBarOptions Interface
