@@ -18,7 +18,7 @@ export class SnackBar {
                     snackText,
                     this._getActionText(),
                     timeout,
-                    function (args) {
+                    (args) => {
                         //Action, Do Nothing, just close it
                         this._snackbar.dismiss(); //Force close
                         resolve({
@@ -27,7 +27,7 @@ export class SnackBar {
                             event: args
                         });
                     },
-                    function (args) {
+                    (args) => {
                         //Dismissal, Do Nothing
                         resolve({
                             command: "Dismiss",
@@ -61,13 +61,13 @@ export class SnackBar {
                     options.snackText,
                     options.actionText,
                     options.hideDelay / 1000,
-                    function (args) {
+                    (args) => {
                         resolve({
                             command: "Action",
                             event: args
                         });
                     },
-                    function (args) {
+                    (args) => {
                         let reason = (this._isDismissedManual) ? "Manual" : "Timeout";
                         this._isDismissedManual = false; //reset
                         resolve({
@@ -90,14 +90,14 @@ export class SnackBar {
 
 
     public dismiss(options) {
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
             if (this._snackbar !== null && this._snackbar != "undefined") {
                 try {
                     this._isDismissedManual = true;
                     this._snackbar.dismiss();
 
                     //Return AFTER the item is dismissed, 200ms delay
-                    setTimeout(function () {
+                    setTimeout(() => {
                         resolve({
                             action: "Dismiss",
                             reason: "Manual"
