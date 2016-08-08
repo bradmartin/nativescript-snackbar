@@ -1,7 +1,5 @@
 /// <reference path="./snackbar.d.ts" />
-import * as app from 'application';
 import { topmost } from 'ui/frame';
-import { isAndroid } from "platform";
 import { Color } from 'color';
 import { SnackBarOptions } from 'nativescript-snackbar';
 
@@ -11,7 +9,7 @@ export class SnackBar {
     private _snackbar: android.support.design.widget.Snackbar;
     private _snackCallback = android.support.design.widget.Snackbar.Callback.extend({
         resolve: null,
-        onDismissed (snackbar, event) {
+        onDismissed(snackbar, event) {
             if (event != 1) {
                 this.resolve({
                     command: "Dismiss",
@@ -36,7 +34,6 @@ export class SnackBar {
                     reject('snackText is required'); //There's a problem, reject the call
                 }
             } catch (ex) {
-                console.log(ex);
                 reject(ex);
             }
         });
@@ -67,10 +64,8 @@ export class SnackBar {
                 // Set the action text, click listener
                 this._snackbar.setAction(options.actionText, listener);
 
-                if (app.android) {
-                    if (options.actionTextColor) {
-                        this._snackbar.setActionTextColor(new Color(options.actionTextColor).android);
-                    }
+                if (options.actionTextColor) {
+                    this._snackbar.setActionTextColor(new Color(options.actionTextColor).android);
                 }
 
                 let callback = new this._snackCallback();
@@ -79,7 +74,6 @@ export class SnackBar {
                 this._snackbar.show();
 
             } catch (ex) {
-                console.log("Error in snackbar.action: " + ex);
                 reject(ex);
             }
         });
@@ -100,7 +94,6 @@ export class SnackBar {
                     }, 200);
 
                 } catch (ex) {
-                    console.log(ex);
                     reject(ex);
                 }
 

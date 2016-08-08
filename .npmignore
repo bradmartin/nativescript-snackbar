@@ -1,12 +1,7 @@
-﻿# generated files
-.vs
-.vs/
-nativescript-snackbar.sln
-demo/
-screens/
-.sln
-*.sln
+﻿demo/
+*.png
+*.log
+*.map
 *.ts
-tsconfig.json
-!index.d.ts
-!snackbar.d.ts
+!.d.ts
+screens/

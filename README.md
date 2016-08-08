@@ -79,3 +79,4 @@ Manually dismiss an active SnackBar
 
 - Steve McNiven-Scott  [@stevemcniven](https://twitter.com/stevemcniven)
 - Nathanael Anderson [@CongoCart](https://twitter.com/congocart)
+- Marc Buils [MarcBuils](http://www.marcbuils.fr/)

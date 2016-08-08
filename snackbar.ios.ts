@@ -1,7 +1,3 @@
-// var snackbar = null;
-// var isDismissedManual = false;
-// let snackbar = null;
-// let isDismissedManual: boolean = false;
 declare var NSBundle, SSSnackbar: any;
 
 export class SnackBar {
@@ -40,7 +36,6 @@ export class SnackBar {
                 this._snackbar.show();
 
             } catch (ex) {
-                console.log(ex);
                 reject(ex);
             }
 
@@ -81,7 +76,6 @@ export class SnackBar {
                 this._snackbar.show();
 
             } catch (ex) {
-                console.log(ex);
                 reject(ex);
             }
 
