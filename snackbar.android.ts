@@ -11,7 +11,7 @@ export class SnackBar {
     private _snackbar: android.support.design.widget.Snackbar;
     private _snackCallback = android.support.design.widget.Snackbar.Callback.extend({
         resolve: null,
-        onDismissed: function (snackbar, event) {
+        onDismissed (snackbar, event) {
             if (event != 1) {
                 this.resolve({
                     command: "Dismiss",
@@ -92,7 +92,7 @@ export class SnackBar {
                 try {
                     this._snackbar.dismiss();
                     //Return AFTER the item is dismissed, 200ms delay
-                    setTimeout(function () {
+                    setTimeout(() => {
                         resolve({
                             action: "Dismiss",
                             reason: _getReason(3)

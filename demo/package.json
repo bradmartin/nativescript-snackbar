@@ -2,7 +2,7 @@
 	"nativescript": {
 		"id": "org.nativescript.snackbar",
 		"tns-ios": {
-			"version": "1.5.2"
+			"version": "2.1.1"
 		},
 		"tns-android": {
 			"version": "2.1.1"
