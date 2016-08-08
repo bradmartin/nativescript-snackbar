@@ -3,5 +3,5 @@
 *.log
 *.map
 *.ts
-!.d.ts
+!index.d.ts
 screens/
