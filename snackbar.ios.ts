@@ -118,7 +118,7 @@ export class SnackBar {
 
 
     private _getActionText() {
-        var actionText = NSBundle.mainBundle().objectForInfoDictionaryKey("NSSnackBarActionText");
+        var actionText = NSBundle.mainBundle.objectForInfoDictionaryKey("NSSnackBarActionText");
         if (actionText != "" && actionText != null) {
             return actionText;
         } else {
