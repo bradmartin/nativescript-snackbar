@@ -4,12 +4,13 @@
         "module": "commonjs",
         "removeComments": true,
         "experimentalDecorators": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "noEmitHelpers": true
     },
     "files": [
-      "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
-      "snackbar.android.ts",
-      "snackbar.ios.ts"
+        "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
+        "snackbar.android.ts",
+        "snackbar.ios.ts"
     ],
     "compileOnSave": false
 }

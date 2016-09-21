@@ -1,14 +1,10 @@
 ﻿*.js
 *.js.map
 *.log
-*.d.ts
-!index.d.ts
-demo/lib
+!scripts/*.js
 demo/app/*.js
 demo/*.d.ts
+demo/lib
 demo/platforms
 demo/node_modules
-demo/.vscode
 node_modules
-.vscode/
-*.DS_Store
