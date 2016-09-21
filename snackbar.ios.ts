@@ -1,5 +1,7 @@
 declare var NSBundle, SSSnackbar: any;
 
+import {device} from "platform"
+
 export class SnackBar {
     private _snackbar = null;
     private _isDismissedManual: boolean = false;
@@ -118,7 +120,8 @@ export class SnackBar {
 
 
     private _getActionText() {
-        var actionText = NSBundle.mainBundle().objectForInfoDictionaryKey("NSSnackBarActionText");
+        let bundle = (parseInt(device.osVersion) >= 10) ? NSBundle.mainBundle : NSBundle.mainBundle()
+        var actionText = bundle.objectForInfoDictionaryKey("NSSnackBarActionText");
         if (actionText != "" && actionText != null) {
             return actionText;
         } else {
