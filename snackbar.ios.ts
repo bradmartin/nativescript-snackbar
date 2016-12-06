@@ -120,7 +120,7 @@ export class SnackBar {
 
 
     private _getActionText() {
-        let bundle = (parseInt(device.osVersion) >= 10) ? NSBundle.mainBundle : NSBundle.mainBundle()
+        let bundle = (typeof NSBundle.mainBundle === 'function') ? NSBundle.mainBundle() : NSBundle.mainBundle;
         var actionText = bundle.objectForInfoDictionaryKey("NSSnackBarActionText");
         if (actionText != "" && actionText != null) {
             return actionText;
