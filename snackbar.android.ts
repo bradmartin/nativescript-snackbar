@@ -1,4 +1,4 @@
-/// <reference path="./snackbar.d.ts" />
+/// <reference path="./index.d.ts" />
 import { topmost } from "ui/frame";
 import { Color } from "color";
 import { SnackBarOptions } from "nativescript-snackbar";
