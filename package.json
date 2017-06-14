@@ -14,6 +14,15 @@
     "type": "git",
     "url": "https://github.com/bradmartin/nativescript-snackbar"
   },
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "keywords": [
     "NativeScript",
     "JavaScript",
@@ -52,5 +61,10 @@
   ],
   "license": "Apache-2.0",
   "bugs": "https://github.com/bradmartin/nativescript-snackbar/issues",
-  "homepage": "https://github.com/bradmartin/nativescript-snackbar"
+  "homepage": "https://github.com/bradmartin/nativescript-snackbar",
+  "devDependencies": {
+    "husky": "^0.13.4",
+    "lint-staged": "^3.6.1",
+    "prettier": "^1.4.4"
+  }
 }
