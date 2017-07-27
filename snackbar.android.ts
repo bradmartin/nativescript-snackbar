@@ -1,7 +1,7 @@
 /// <reference path="./index.d.ts" />
 import { topmost } from "ui/frame";
 import { Color } from "color";
-import { SnackBarOptions } from "nativescript-snackbar";
+import { SnackBarOptions } from "./index";
 
 declare var android: any;
 
@@ -11,7 +11,7 @@ export class SnackBar {
     {
       resolve: null,
       onDismissed(snackbar, event) {
-        if (event != 1) {
+        if (event !== 1) {
           this.resolve({
             command: "Dismiss",
             reason: _getReason(event),
@@ -36,7 +36,7 @@ export class SnackBar {
           this._snackbar.setCallback(callback);
           this._snackbar.show();
         } else {
-          reject("snackText is required"); //There's a problem, reject the call
+          reject("snackText is required"); // There's a problem, reject the call
         }
       } catch (ex) {
         reject(ex);
@@ -66,7 +66,7 @@ export class SnackBar {
           }
         });
 
-        // Set the action text, click listener
+        // set the action text, click listener
         this._snackbar.setAction(options.actionText, listener);
 
         if (options.actionTextColor) {
@@ -90,7 +90,7 @@ export class SnackBar {
       if (this._snackbar) {
         try {
           this._snackbar.dismiss();
-          //Return AFTER the item is dismissed, 200ms delay
+          // return AFTER the item is dismissed, 200ms delay
           setTimeout(() => {
             resolve({
               action: "Dismiss",
