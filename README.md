@@ -37,7 +37,9 @@ public showAction() {
     actionText: this.get('actionText'),
     actionTextColor: '#ff4081',
     snackText: this.get('snackText'),
-    hideDelay: 3500
+    hideDelay: 3500,
+    textColor: '#346db2', // Optional, Android only
+    backgroundColor: '#eaeaea' // Optional, Android only
   };
 
   snackbar.action(options).then((args) => {
@@ -72,6 +74,8 @@ Manually dismiss an active SnackBar
 - **actionTextColor: string**
 - **snackText: string**
 - **hideDelay: number**
+- **textColor: string**
+- **backgroundColor: string**
 
 
 
@@ -80,3 +84,4 @@ Manually dismiss an active SnackBar
 - Steve McNiven-Scott  [@stevemcniven](https://twitter.com/stevemcniven)
 - Nathanael Anderson [@CongoCart](https://twitter.com/congocart)
 - Marc Buils [MarcBuils](http://www.marcbuils.fr/)
+- Davor Peic [@davorpeic](https://twitter.com/davorpeic)

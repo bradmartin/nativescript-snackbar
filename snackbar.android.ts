@@ -69,10 +69,25 @@ export class SnackBar {
         // set the action text, click listener
         this._snackbar.setAction(options.actionText, listener);
 
+        // set action text color
         if (options.actionTextColor) {
           this._snackbar.setActionTextColor(
             new Color(options.actionTextColor).android
           );
+        }
+
+        // set text color
+        if (options.textColor) {
+          let mainTextView = this._snackbar
+            .getView()
+            .findViewById(android.support.design.R.id.snackbar_text);
+          mainTextView.setTextColor(new Color(options.textColor).android);
+        }
+
+        // set background color
+        if (options.backgroundColor) {
+          let sbView = this._snackbar.getView();
+          sbView.setBackgroundColor(new Color(options.backgroundColor).android);
         }
 
         let callback = new this._snackCallback();

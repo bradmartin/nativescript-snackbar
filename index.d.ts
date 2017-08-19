@@ -25,4 +25,6 @@ export interface SnackBarOptions {
   actionTextColor: string;
   snackText: string;
   hideDelay: number;
+  textColor?: string;
+  backgroundColor?: string;
 }
