@@ -1,6 +1,6 @@
 /// <reference path="./index.d.ts" />
-import { topmost } from "ui/frame";
-import { Color } from "color";
+import { topmost } from "tns-core-modules/ui/frame";
+import { Color } from "tns-core-modules/color";
 import { SnackBarOptions } from "./index";
 
 declare var android: any;

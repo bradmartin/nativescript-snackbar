@@ -1,6 +1,6 @@
 {
   "name": "nativescript-snackbar",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "A NativeScript plugin providing the Material Design SnackBar.",
   "main": "snackbar",
   "typings": "index.d.ts",
@@ -18,10 +18,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.ts": ["prettier --write", "git add"]
   },
   "keywords": [
     "NativeScript",
@@ -56,6 +53,10 @@
       "name": "Rob Laverty",
       "email": "roblav96@gmail.com",
       "url": "https://github.com/roblav96"
+    },
+    {
+      "name": "Davor Peic",
+      "url": "http://www.davorpeic.com"
     }
   ],
   "license": "Apache-2.0",
