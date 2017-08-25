@@ -35,7 +35,7 @@ public showSimple() {
 public showAction() {
   let options: SnackBarOptions = {
     actionText: this.get('actionText'),
-    actionTextColor: '#ff4081',
+    actionTextColor: '#ff4081', // Optional, Android only
     snackText: this.get('snackText'),
     hideDelay: 3500,
     textColor: '#346db2', // Optional, Android only

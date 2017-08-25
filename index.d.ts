@@ -22,7 +22,7 @@ export declare class SnackBar {
 
 export interface SnackBarOptions {
   actionText: string;
-  actionTextColor: string;
+  actionTextColor?: string;
   snackText: string;
   hideDelay: number;
   textColor?: string;
