@@ -26,7 +26,7 @@ let snackbar = new SnackBar();
 
 /// Show a simple snackbar with no actions (Except close on iOS, limitation of the Cocoapod)
 public showSimple() {
-    snackbar.simple('Snackbar').then((args) => {
+    snackbar.simple('Snackbar', 'red', '#fff').then((args) => {
          this.set('jsonResult', JSON.stringify(args));
    })
 }
@@ -58,8 +58,8 @@ public showAction() {
 
 ### API
 
-Show a simple SnackBar
-- **simple(snackText: string): Promise<any>**
+Show a simple SnackBar (color args will only work on Android)
+- **simple(snackText: string, textColor?: string, backgroundColor?: string): Promise<any>**
 
 Show a SnackBar with Action.
 - **action(options: SnackBarOptions): Promise<any>**
