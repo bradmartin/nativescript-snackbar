@@ -22,22 +22,38 @@ export class SnackBar {
     }
   );
 
-  public simple(snackText: string): Promise<any> {
+  public simple(
+    snackText: string,
+    textColor?: string,
+    backgroundColor?: string
+  ): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
-        if (snackText) {
-          this._snackbar = android.support.design.widget.Snackbar.make(
-            topmost().currentPage.android,
-            snackText,
-            3000
-          );
-          let callback = new this._snackCallback();
-          callback.resolve = resolve;
-          this._snackbar.setCallback(callback);
-          this._snackbar.show();
-        } else {
-          reject("snackText is required"); // There's a problem, reject the call
+        if (!snackText) {
+          reject("Snack text is required.");
+          return;
         }
+
+        this._snackbar = android.support.design.widget.Snackbar.make(
+          topmost().currentPage.android,
+          snackText,
+          3000
+        );
+
+        // set text color
+        if (textColor) {
+          this._setTextColor(textColor);
+        }
+
+        // set background color
+        if (backgroundColor) {
+          this._setBackgroundColor(backgroundColor);
+        }
+
+        const callback = new this._snackCallback();
+        callback.resolve = resolve;
+        this._snackbar.setCallback(callback);
+        this._snackbar.show();
       } catch (ex) {
         reject(ex);
       }
@@ -69,25 +85,14 @@ export class SnackBar {
         // set the action text, click listener
         this._snackbar.setAction(options.actionText, listener);
 
-        // set action text color
-        if (options.actionTextColor) {
-          this._snackbar.setActionTextColor(
-            new Color(options.actionTextColor).android
-          );
-        }
-
         // set text color
         if (options.textColor) {
-          let mainTextView = this._snackbar
-            .getView()
-            .findViewById(android.support.design.R.id.snackbar_text);
-          mainTextView.setTextColor(new Color(options.textColor).android);
+          this._setTextColor(options.textColor);
         }
 
         // set background color
         if (options.backgroundColor) {
-          let sbView = this._snackbar.getView();
-          sbView.setBackgroundColor(new Color(options.backgroundColor).android);
+          this._setBackgroundColor(options.backgroundColor);
         }
 
         let callback = new this._snackCallback();
@@ -122,6 +127,23 @@ export class SnackBar {
         });
       }
     });
+  }
+
+  private _setBackgroundColor(color) {
+    // set background color
+    if (color) {
+      const sbView = this._snackbar.getView();
+      sbView.setBackgroundColor(new Color(color).android);
+    }
+  }
+
+  private _setTextColor(color) {
+    if (color) {
+      const mainTextView = this._snackbar
+        .getView()
+        .findViewById(android.support.design.R.id.snackbar_text);
+      mainTextView.setTextColor(new Color(color).android);
+    }
   }
 }
 

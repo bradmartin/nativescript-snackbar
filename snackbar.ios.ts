@@ -1,6 +1,7 @@
-declare var NSBundle, SSSnackbar: any;
+import { device } from "tns-core-modules/platform";
+import { SnackBarOptions } from "./index";
 
-import { device } from "platform";
+declare var NSBundle, SSSnackbar: any;
 
 export class SnackBar {
   private _snackbar = null;
@@ -8,7 +9,7 @@ export class SnackBar {
 
   public simple(snackText: string) {
     return new Promise((resolve, reject) => {
-      let timeout = 3;
+      const timeout = 3;
 
       try {
         this._snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
@@ -41,7 +42,7 @@ export class SnackBar {
     });
   }
 
-  public action(options) {
+  public action(options: SnackBarOptions) {
     return new Promise((resolve, reject) => {
       try {
         if (!options.hideDelay) options.hideDelay = 3000;
@@ -105,9 +106,10 @@ export class SnackBar {
   }
 
   private _getActionText() {
-    let bundle = typeof NSBundle.mainBundle === "function"
-      ? NSBundle.mainBundle()
-      : NSBundle.mainBundle;
+    let bundle =
+      typeof NSBundle.mainBundle === "function"
+        ? NSBundle.mainBundle()
+        : NSBundle.mainBundle;
     var actionText = bundle.objectForInfoDictionaryKey("NSSnackBarActionText");
     if (actionText != "" && actionText != null) {
       return actionText;
