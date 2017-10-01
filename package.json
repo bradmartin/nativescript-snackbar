@@ -57,6 +57,11 @@
     {
       "name": "Davor Peic",
       "url": "http://www.davorpeic.com"
+    },
+    {
+      "name": "Eddy Verbruggen",
+      "email": "eddyverbruggen@gmail.com",
+      "url": "https://github.com/eddyverbruggen"
     }
   ],
   "license": "Apache-2.0",
@@ -66,6 +71,7 @@
     "husky": "^0.13.4",
     "lint-staged": "^3.6.1",
     "prettier": "^1.4.4",
+    "tns-core-modules": "^3.1.0",
     "tns-platform-declarations": ">=3.0.0",
     "typescript": "^2.3.0"
   }
