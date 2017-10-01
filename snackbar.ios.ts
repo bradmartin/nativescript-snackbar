@@ -1,7 +1,6 @@
-import { device } from "tns-core-modules/platform";
 import { SnackBarOptions } from "./index";
 
-declare var NSBundle, SSSnackbar: any;
+declare const SSSnackbar: any;
 
 export class SnackBar {
   private _snackbar = null;
@@ -14,7 +13,7 @@ export class SnackBar {
       try {
         this._snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
           snackText,
-          this._getActionText(),
+          null,
           timeout,
           args => {
             //Action, Do Nothing, just close it
@@ -99,22 +98,5 @@ export class SnackBar {
         });
       }
     });
-  }
-
-  public getSnackbar() {
-    return this._snackbar;
-  }
-
-  private _getActionText() {
-    let bundle =
-      typeof NSBundle.mainBundle === "function"
-        ? NSBundle.mainBundle()
-        : NSBundle.mainBundle;
-    var actionText = bundle.objectForInfoDictionaryKey("NSSnackBarActionText");
-    if (actionText != "" && actionText != null) {
-      return actionText;
-    } else {
-      return "Close";
-    }
   }
 }

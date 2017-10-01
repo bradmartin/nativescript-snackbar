@@ -24,7 +24,7 @@ import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
 // Create an instance of SnackBar
 let snackbar = new SnackBar();
 
-/// Show a simple snackbar with no actions (Except close on iOS, limitation of the Cocoapod)
+/// Show a simple snackbar with no actions
 public showSimple() {
     snackbar.simple('Snackbar', 'red', '#fff').then((args) => {
          this.set('jsonResult', JSON.stringify(args));
@@ -52,9 +52,6 @@ public showAction() {
 }
 
 ```
-
-### Note: To change the "Close" text on iOS edit the info.pList
-
 
 ### API
 
@@ -85,3 +82,4 @@ Manually dismiss an active SnackBar
 - Nathanael Anderson [@CongoCart](https://twitter.com/congocart)
 - Marc Buils [MarcBuils](http://www.marcbuils.fr/)
 - Davor Peic [@davorpeic](https://twitter.com/davorpeic)
+- Eddy Verbruggen [@eddyverbruggen](https://twitter.com/eddyverbruggen)
