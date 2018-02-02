@@ -76,8 +76,8 @@
     "husky": "^0.13.4",
     "lint-staged": "^3.6.1",
     "prettier": "^1.4.4",
-    "tns-core-modules": "^3.1.0",
-    "tns-platform-declarations": ">=3.0.0",
-    "typescript": "^2.3.0"
+    "tns-core-modules": "~3.4.0",
+    "tns-platform-declarations": "~3.4.0",
+    "typescript": "~2.6.0"
   }
 }

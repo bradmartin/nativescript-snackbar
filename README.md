@@ -16,6 +16,8 @@ Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod]
 ## Installation
 `tns plugin add nativescript-snackbar`
 
+Requires Xcode 9+ to build for iOS, so update Xcode if needed.
+
 ## Usage
 
 
