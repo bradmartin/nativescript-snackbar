@@ -3,7 +3,11 @@
 *.js.map
 *.log
 !scripts/*.js
+!src/scripts/*.js
 demo/*.d.ts
 demo/lib
 demo/platforms
 node_modules
+
+*.DS_Store
+

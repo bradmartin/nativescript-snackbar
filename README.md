@@ -4,27 +4,30 @@
 [![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-snackbar.svg)](https://github.com/bradmartin/nativescript-snackbar/stargazers)
 [![PayPal Donate](https://img.shields.io/badge/Donate-PayPal-ff4081.svg)](https://www.paypal.me/bradwayne88)
 
-
 # NativeScript Snackbar :lollipop: :chocolate_bar:
 
 Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod](https://github.com/stonesam92/SSSnackbar)
 
-### Snackbar Usage 
+### Snackbar Usage
 
 ![Snackbar](./screens/snackbar.gif)
 
 ## Installation
+
+### NativeScript 4x
+
 `tns plugin add nativescript-snackbar`
+
+### NativeScript 3x-
+`tns plugin add nativescript-snackbar@2.0.1` or just pin `nativescript-snackbar: 2.0.1` in your app's package.json - to avoid any build conflicts is why the latest has been bumped a major.
 
 Requires Xcode 9+ to build for iOS, so update Xcode if needed.
 
 ## Usage
 
-
 ### TS
 
-```TS
-
+```typescript
 import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
 
 // Create an instance of SnackBar
@@ -56,36 +59,35 @@ public showAction() {
     }
   });
 }
-
 ```
 
 ### API
 
 Show a simple SnackBar (color args will only work on Android)
-- **simple(snackText: string, textColor?: string, backgroundColor?: string): Promise<any>**
+
+* **simple(snackText: string, textColor?: string, backgroundColor?: string): Promise<any>**
 
 Show a SnackBar with Action.
-- **action(options: SnackBarOptions): Promise<any>**
+
+* **action(options: SnackBarOptions): Promise<any>**
 
 Manually dismiss an active SnackBar
-- **dismiss(): Promise<any>**
 
+* **dismiss(): Promise<any>**
 
 ### SnackBarOptions Interface
 
-- **actionText: string**
-- **actionTextColor: string**
-- **snackText: string**
-- **hideDelay: number**
-- **textColor: string**
-- **backgroundColor: string**
-
-
+* **actionText: string**
+* **actionTextColor: string**
+* **snackText: string**
+* **hideDelay: number**
+* **textColor: string**
+* **backgroundColor: string**
 
 ### Contributors
 
-- Steve McNiven-Scott  [@stevemcniven](https://twitter.com/stevemcniven)
-- Nathanael Anderson [@CongoCart](https://twitter.com/congocart)
-- Marc Buils [MarcBuils](http://www.marcbuils.fr/)
-- Davor Peic [@davorpeic](https://twitter.com/davorpeic)
-- Eddy Verbruggen [@eddyverbruggen](https://twitter.com/eddyverbruggen)
+* Steve McNiven-Scott [@stevemcniven](https://twitter.com/stevemcniven)
+* Nathanael Anderson [@CongoCart](https://twitter.com/congocart)
+* Marc Buils [MarcBuils](http://www.marcbuils.fr/)
+* Davor Peic [@davorpeic](https://twitter.com/davorpeic)
+* Eddy Verbruggen [@eddyverbruggen](https://twitter.com/eddyverbruggen)

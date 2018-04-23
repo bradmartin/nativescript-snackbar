@@ -9,7 +9,7 @@
     }
   },
   "dependencies": {
-    "nativescript-snackbar": "file:..",
+    "nativescript-snackbar": "../src",
     "tns-core-modules": "~3.4.0"
   },
   "devDependencies": {

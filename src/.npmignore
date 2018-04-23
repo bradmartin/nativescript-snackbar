@@ -1,0 +1,13 @@
+﻿demo/
+*.png
+*.log
+screens/
+*.map
+*.ts
+!*.d.ts
+tsconfig.json
+scripts/*
+platforms/android/*
+!platforms/android/include.gradle
+!platforms/android/*.aar
+!platforms/android/*.jar

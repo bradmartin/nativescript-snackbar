@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": false,
+    "declaration": false,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "lib": ["es6", "dom"],
+    "pretty": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": ["node_modules"],
+  "files": ["snackbar.android.ts", "snackbar.ios.ts"],
+  "compileOnSave": false
+}
