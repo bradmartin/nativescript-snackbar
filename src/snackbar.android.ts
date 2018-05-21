@@ -53,10 +53,7 @@ export class SnackBar {
     return new Promise((resolve, reject) => {
       try {
         options.actionText = options.actionText ? options.actionText : 'Close';
-
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
-        // if (!options.actionText) options.actionText = 'Close';
-        // if (!options.hideDelay) options.hideDelay = 3000;
 
         this._snackbar = android.support.design.widget.Snackbar.make(
           topmost().currentPage.android,
