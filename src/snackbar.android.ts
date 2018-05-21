@@ -1,8 +1,8 @@
-import { topmost } from 'tns-core-modules/ui/frame';
 import { Color } from 'tns-core-modules/color';
+import { topmost } from 'tns-core-modules/ui/frame';
 import { SnackBarOptions } from './index';
 
-declare var android;
+// declare var android;
 
 export class SnackBar {
   private _snackbar: android.support.design.widget.Snackbar;
@@ -52,8 +52,11 @@ export class SnackBar {
   public action(options: SnackBarOptions) {
     return new Promise((resolve, reject) => {
       try {
-        if (!options.actionText) options.actionText = 'Close';
-        if (!options.hideDelay) options.hideDelay = 3000;
+        options.actionText = options.actionText ? options.actionText : 'Close';
+
+        options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
+        // if (!options.actionText) options.actionText = 'Close';
+        // if (!options.hideDelay) options.hideDelay = 3000;
 
         this._snackbar = android.support.design.widget.Snackbar.make(
           topmost().currentPage.android,
@@ -61,7 +64,7 @@ export class SnackBar {
           options.hideDelay
         );
 
-        let listener = new android.view.View.OnClickListener({
+        const listener = new android.view.View.OnClickListener({
           onClick: args => {
             resolve({
               command: 'Action',
@@ -77,6 +80,14 @@ export class SnackBar {
         // set text color
         if (options.textColor) {
           this._setTextColor(options.textColor);
+        }
+
+        if (options.actionTextColor) {
+          // check color validity
+          const colorIsValid = Color.isValid(options.actionTextColor);
+          if (colorIsValid) {
+            this._snackbar.setActionTextColor(new Color(options.actionTextColor).android);
+          }
         }
 
         // set background color
