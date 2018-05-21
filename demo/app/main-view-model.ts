@@ -1,6 +1,6 @@
+import { SnackBar, SnackBarOptions } from 'nativescript-snackbar';
 import { Observable } from 'tns-core-modules/data/observable';
 import { Page } from 'tns-core-modules/ui/page';
-import { SnackBar, SnackBarOptions } from 'nativescript-snackbar';
 
 export class HelloWorldModel extends Observable {
   private _SnackBar: SnackBar;
@@ -26,7 +26,9 @@ export class HelloWorldModel extends Observable {
   public showAction() {
     let options: SnackBarOptions = {
       actionText: this.get('actionText'),
+      textColor: '#333',
       actionTextColor: '#ff4081',
+      backgroundColor: '#d3c454',
       snackText: this.get('snackText'),
       hideDelay: 3500
     };

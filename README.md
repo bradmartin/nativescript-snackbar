@@ -19,6 +19,7 @@ Use the Material Design Snackbar in your {N} app, iOS uses [SSSnackbar Cocoapod]
 `tns plugin add nativescript-snackbar`
 
 ### NativeScript 3x-
+
 `tns plugin add nativescript-snackbar@2.0.1` or just pin `nativescript-snackbar: 2.0.1` in your app's package.json - to avoid any build conflicts is why the latest has been bumped a major.
 
 Requires Xcode 9+ to build for iOS, so update Xcode if needed.
@@ -46,8 +47,8 @@ public showAction() {
     actionText: this.get('actionText'),
     actionTextColor: '#ff4081', // Optional, Android only
     snackText: this.get('snackText'),
-    hideDelay: 3500,
     textColor: '#346db2', // Optional, Android only
+    hideDelay: 3500,
     backgroundColor: '#eaeaea' // Optional, Android only
   };
 
@@ -83,11 +84,3 @@ Manually dismiss an active SnackBar
 * **hideDelay: number**
 * **textColor: string**
 * **backgroundColor: string**
-
-### Contributors
-
-* Steve McNiven-Scott [@stevemcniven](https://twitter.com/stevemcniven)
-* Nathanael Anderson [@CongoCart](https://twitter.com/congocart)
-* Marc Buils [MarcBuils](http://www.marcbuils.fr/)
-* Davor Peic [@davorpeic](https://twitter.com/davorpeic)
-* Eddy Verbruggen [@eddyverbruggen](https://twitter.com/eddyverbruggen)

@@ -1,8 +1,8 @@
-import { EventData } from 'tns-core-modules/data/observable';
-import { Page } from 'tns-core-modules/ui/page';
-import { Color } from 'tns-core-modules/color';
-import { isAndroid, device } from 'tns-core-modules/platform';
 import * as app from 'tns-core-modules/application';
+import { Color } from 'tns-core-modules/color';
+import { EventData } from 'tns-core-modules/data/observable';
+import { device, isAndroid } from 'tns-core-modules/platform';
+import { Page } from 'tns-core-modules/ui/page';
 import { HelloWorldModel } from './main-view-model';
 
 // Event handler for Page "loaded" event attached in main-page.xml
