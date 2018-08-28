@@ -36,7 +36,7 @@ let snackbar = new SnackBar();
 
 /// Show a simple snackbar with no actions
 public showSimple() {
-    snackbar.simple('Snackbar', 'red', '#fff').then((args) => {
+    snackbar.simple('Snackbar', 'red', '#fff', 3, false).then((args) => {
          this.set('jsonResult', JSON.stringify(args));
    })
 }
@@ -49,7 +49,9 @@ public showAction() {
     snackText: this.get('snackText'),
     textColor: '#346db2', // Optional, Android only
     hideDelay: 3500,
-    backgroundColor: '#eaeaea' // Optional, Android only
+    backgroundColor: '#eaeaea', // Optional, Android only
+    maxLines: 3, // Optional, Android Only
+    isRTL: false // Optional, Android Only
   };
 
   snackbar.action(options).then((args) => {
@@ -66,21 +68,23 @@ public showAction() {
 
 Show a simple SnackBar (color args will only work on Android)
 
-* **simple(snackText: string, textColor?: string, backgroundColor?: string): Promise<any>**
+- **simple(snackText: string, textColor?: string, backgroundColor?: string, maxLines?: number, isRTL?: boolean): Promise<any>**
 
 Show a SnackBar with Action.
 
-* **action(options: SnackBarOptions): Promise<any>**
+- **action(options: SnackBarOptions): Promise<any>**
 
 Manually dismiss an active SnackBar
 
-* **dismiss(): Promise<any>**
+- **dismiss(): Promise<any>**
 
 ### SnackBarOptions Interface
 
-* **actionText: string**
-* **actionTextColor: string**
-* **snackText: string**
-* **hideDelay: number**
-* **textColor: string**
-* **backgroundColor: string**
+- **actionText: string**
+- **actionTextColor: string**
+- **snackText: string**
+- **hideDelay: number**
+- **textColor: string**
+- **backgroundColor: string**
+- **maxLines: number**
+- **isRTL: boolean**
