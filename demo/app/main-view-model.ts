@@ -12,13 +12,14 @@ export class HelloWorldModel extends Observable {
     super();
 
     this._SnackBar = new SnackBar();
-    this.snackText = 'Snackbar Text';
+    this.snackText =
+      'Snackbar Text on a really freaking lone max line number, this is only 3 max lines but it could be more :) so I will keep rambling on and on and on and on until the cows come home. Hope this works well.';
     this.actionText = 'Okay';
     this.jsonResult = '';
   }
 
   public showSimple() {
-    this._SnackBar.simple(this.get('snackText')).then(args => {
+    this._SnackBar.simple(this.get('snackText'), null, null, 3, true).then(args => {
       this.set('jsonResult', JSON.stringify(args));
     });
   }

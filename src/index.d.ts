@@ -7,9 +7,17 @@ export declare class SnackBar {
    * @param {string} - The SnackBar text.
    * @param {string} - The color of the snackbar text.backgroundColor * Android Only *
    * @param {string} - The background color of the snackbar. * Android Only *
+   * @param {number} - The max lines for the text of the snackbar. * Android Only *
+   * @param {boolean} - Set RTL for the textview of the snackbar. * Android Only *
    * @returns {number} Android color int
    */
-  simple(snackText: string, textColor?: string, backgroundColor?: string): Promise<any>;
+  simple(
+    snackText: string,
+    textColor?: string,
+    backgroundColor?: string,
+    maxLines?: number,
+    isRTL?: boolean
+  ): Promise<any>;
 
   /**
    * Show a SnackBar with Action
@@ -23,10 +31,44 @@ export declare class SnackBar {
 }
 
 export interface SnackBarOptions {
+  /**
+   * The action button text of the snackbar.
+   */
   actionText: string;
+
+  /**
+   * The text of the snackbar.
+   */
   snackText: string;
+
+  /**
+   * Delay to hide the snackbar.
+   */
   hideDelay: number;
+
+  /**
+   * Action Text Color of the snackbar.
+   */
   actionTextColor?: string;
+
+  /**
+   * Text Color of the snackbar.
+   */
   textColor?: string;
+
+  /**
+   * Background Color of the snackbar.
+   */
   backgroundColor?: string;
+  /**
+   * *Android Only*
+   * Set the maxLines if you are displaying a long string of text and it will wrap.
+   */
+  maxLines?: number;
+
+  /**
+   * *Android Only*
+   * Use RTL for textview of snackbar.
+   */
+  isRTL?: boolean;
 }

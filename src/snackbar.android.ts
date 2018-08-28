@@ -19,7 +19,14 @@ export class SnackBar {
     }
   });
 
-  public simple(snackText: string, textColor?: string, backgroundColor?: string): Promise<any> {
+  // TODO: use an object for the options
+  public simple(
+    snackText: string,
+    textColor?: string,
+    backgroundColor?: string,
+    maxLines?: number,
+    isRTL?: boolean
+  ): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
         if (!snackText) {
@@ -42,6 +49,22 @@ export class SnackBar {
         const callback = new this._snackCallback();
         callback.resolve = resolve;
         this._snackbar.setCallback(callback);
+
+        // https://github.com/bradmartin/nativescript-snackbar/issues/33
+        if (maxLines) {
+          const sbView = this._snackbar.getView();
+          const tv = sbView.findViewById(android.support.design.R.id.snackbar_text);
+          tv.setMaxLines(maxLines);
+        }
+
+        // set RTL for snackbar
+        // https://github.com/bradmartin/nativescript-snackbar/issues/26
+        if (isRTL === true) {
+          const sbView = this._snackbar.getView();
+          const tv = sbView.findViewById(android.support.design.R.id.snackbar_text);
+          tv.setLayoutDirection(android.view.View.LAYOUT_DIRECTION_RTL);
+        }
+
         this._snackbar.show();
       } catch (ex) {
         reject(ex);
@@ -90,6 +113,22 @@ export class SnackBar {
         // set background color
         if (options.backgroundColor) {
           this._setBackgroundColor(options.backgroundColor);
+        }
+
+        // set maxLines for the textview
+        // https://github.com/bradmartin/nativescript-snackbar/issues/33
+        if (options.maxLines) {
+          const sbView = this._snackbar.getView();
+          const tv = sbView.findViewById(android.support.design.R.id.snackbar_text);
+          tv.setMaxLines(options.maxLines);
+        }
+
+        // set RTL for snackbar
+        // https://github.com/bradmartin/nativescript-snackbar/issues/26
+        if (options.isRTL === true) {
+          const sbView = this._snackbar.getView();
+          const tv = sbView.findViewById(android.support.design.R.id.snackbar_text);
+          tv.setLayoutDirection(android.view.View.LAYOUT_DIRECTION_RTL);
         }
 
         let callback = new this._snackCallback();
