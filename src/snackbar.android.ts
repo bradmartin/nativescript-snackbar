@@ -86,8 +86,7 @@ export class SnackBar {
         options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
-        const attachToView =
-          topmost().currentPage.android || topmost().currentPage.parent.android;
+        const attachToView = topmost().currentPage.android;
         this._snackbar = android.support.design.widget.Snackbar.make(
           attachToView,
           options.snackText,
