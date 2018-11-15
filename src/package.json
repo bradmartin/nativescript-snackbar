@@ -33,7 +33,7 @@
     "clean": "cd ../demo && rimraf hooks node_modules platforms && cd ../src && rimraf node_modules && npm run plugin.link",
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
     "prepack": "npm run build.native",
-    "make-changelog": "github_changelog_generator -u bradmartin -p nativescript-snackbar"
+    "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-snackbar"
   },
   "lint-staged": {
     "*.{ts, js, json, css, scss, md}": [
