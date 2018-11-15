@@ -1,12 +1,28 @@
-<page 
-    xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-    <action-bar title="NativeScript-Snackbar" color="#fff" backgroundColor="#3489db" />
+<page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+    <action-bar title="NativeScript-Snackbar" />
     <scroll-view>
         <stack-layout padding="10">
             <button text="Simple Snackbar" tap="{{ showSimple }}" />
+
+            <Label text="" width="95%" backgroundColor="#fff000" height="2" margin="5" textWrap="true" />
+            <Label text="Action Example will pick random colors for the snackbar color and the action text color. Be sure to view the API for the methods." fontSize="18" marginTop="10" textWrap="true" />
+
+            <DockLayout stretchLastChild="true" margin="10">
+                <Label dock="top" text="Action Snackbar Text" horizontalAlignment="center" />
+                <TextView hint="Snack Text" text="{{ snackText }}" />
+            </DockLayout>
+
+            <DockLayout stretchLastChild="true" margin="10">
+                <Label dock="top" text="ActionButton Text" horizontalAlignment="center"/>
+                <TextField hint="ActionButton Text" text="{{ actionText }}" />
+            </DockLayout>
+
             <button text="Action Snackbar" tap="{{ showAction }}" />
-            <TextField hint="Snack Text" text="{{ snackText }}" />
-            <TextField hint="Action Text" text="{{ actionText }}" />
+
+
+            <Label text="" width="95%" backgroundColor="#fff000" height="2" margin="5" textWrap="true" />
+
+            <Label text="Promise data from last snackbar..."/>
             <Label text="{{ jsonResult }}" textWrap="true" />
         </stack-layout>
     </scroll-view>

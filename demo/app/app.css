@@ -1,17 +1,24 @@
-﻿.title {
-    font-size: 26;
-    horizontal-align: center;
-    margin: 20;
+﻿ActionBar {
+  color: #fff;
+  background-color: #7a25db;
+}
+
+.title {
+  font-size: 26;
+  horizontal-align: center;
+  margin: 20;
 }
 
 button {
-    font-size: 16;
-    horizontal-align: center;
+  font-size: 16;
+  horizontal-align: center;
+  background-color: #fff000;
+  color: #111;
 }
 
 .message {
-    font-size: 20;
-    color: #284848;
-    margin:10;
-    horizontal-align: center;
+  font-size: 20;
+  color: #284848;
+  margin: 10;
+  horizontal-align: center;
 }
