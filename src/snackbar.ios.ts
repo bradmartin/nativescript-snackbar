@@ -1,6 +1,7 @@
-import { SnackBarOptions } from './index';
+/// <reference path="./typings/objc!SSSnackbar.d.ts" />
 
-declare const SSSnackbar: any;
+import { DismissReasons, SnackBarOptions } from './snackbar.common';
+export * from './snackbar.common';
 
 export class SnackBar {
   private _snackbar = null;
@@ -16,19 +17,19 @@ export class SnackBar {
           null,
           timeout,
           args => {
-            //Action, Do Nothing, just close it
-            this._snackbar.dismiss(); //Force close
+            // Action, Do Nothing, just close it
+            this._snackbar.dismiss(); // Force close
             resolve({
               command: 'Dismiss',
-              reason: 'Manual',
+              reason: DismissReasons.MANUAL,
               event: args
             });
           },
           args => {
-            //Dismissal, Do Nothing
+            // Dismissal, Do Nothing
             resolve({
               command: 'Dismiss',
-              reason: 'Timeout',
+              reason: DismissReasons.TIMEOUT,
               event: args
             });
           }
@@ -57,8 +58,11 @@ export class SnackBar {
             });
           },
           args => {
-            let reason = this._isDismissedManual ? 'Manual' : 'Timeout';
-            this._isDismissedManual = false; //reset
+            const reason = this._isDismissedManual
+              ? DismissReasons.MANUAL
+              : DismissReasons.TIMEOUT;
+
+            this._isDismissedManual = false; // reset
             resolve({
               command: 'Dismiss',
               reason: reason,
@@ -76,16 +80,16 @@ export class SnackBar {
 
   public dismiss(options) {
     return new Promise((resolve, reject) => {
-      if (this._snackbar !== null && this._snackbar != 'undefined') {
+      if (this._snackbar !== null && this._snackbar !== 'undefined') {
         try {
           this._isDismissedManual = true;
           this._snackbar.dismiss();
 
-          //Return AFTER the item is dismissed, 200ms delay
+          // Return AFTER the item is dismissed, 200ms delay
           setTimeout(() => {
             resolve({
               action: 'Dismiss',
-              reason: 'Manual'
+              reason: DismissReasons.MANUAL
             });
           }, 200);
         } catch (ex) {
