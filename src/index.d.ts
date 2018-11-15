@@ -9,7 +9,6 @@ export declare class SnackBar {
    * @param {string} - The background color of the snackbar. * Android Only *
    * @param {number} - The max lines for the text of the snackbar. * Android Only *
    * @param {boolean} - Set RTL for the textview of the snackbar. * Android Only *
-   * @returns {number} Android color int
    */
   simple(
     snackText: string,
@@ -71,4 +70,12 @@ export interface SnackBarOptions {
    * Use RTL for textview of snackbar.
    */
   isRTL?: boolean;
+}
+
+export enum DismissReasons {
+  SWIPE = 'Swipe',
+  ACTION = 'Action',
+  TIMEOUT = 'Timeout',
+  MANUAL = 'Manual',
+  CONSECUTIVE = 'Consecutive'
 }
