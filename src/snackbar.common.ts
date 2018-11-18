@@ -1,3 +1,5 @@
+import { View } from "ui/core/view";
+
 export interface SnackBarOptions {
   /**
    * The action button text of the snackbar.
@@ -39,6 +41,13 @@ export interface SnackBarOptions {
    * Use RTL for textview of snackbar.
    */
   isRTL?: boolean;
+
+  /**
+   * *Android Only*
+   * The View to which the snackbar will be attached. Useful with modals.
+   * Default to topmost().currentPage
+   */
+  view?: View;
 }
 
 export enum DismissReasons {
