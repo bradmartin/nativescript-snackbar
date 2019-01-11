@@ -1,3 +1,4 @@
+import { View } from "ui/core/view";
 /**
  * Represents the SnackBar.
  */
@@ -9,13 +10,15 @@ export declare class SnackBar {
    * @param {string} - The background color of the snackbar. * Android Only *
    * @param {number} - The max lines for the text of the snackbar. * Android Only *
    * @param {boolean} - Set RTL for the textview of the snackbar. * Android Only *
+   * @param {View} - The View to which the snackbar will be attached. Default to topmost().currentPage. * Android Only *
    */
   simple(
     snackText: string,
     textColor?: string,
     backgroundColor?: string,
     maxLines?: number,
-    isRTL?: boolean
+    isRTL?: boolean,
+    view?: View
   ): Promise<any>;
 
   /**
@@ -70,6 +73,13 @@ export interface SnackBarOptions {
    * Use RTL for textview of snackbar.
    */
   isRTL?: boolean;
+
+  /**
+   * *Android Only*
+   * The View to which the snackbar will be attached. Useful with modals.
+   * Default to topmost().currentPage
+   */
+  view?: View;
 }
 
 export enum DismissReasons {

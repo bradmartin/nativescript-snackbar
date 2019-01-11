@@ -45,7 +45,8 @@ public showAction() {
     hideDelay: 3500,
     backgroundColor: '#eaeaea', // Optional, Android only
     maxLines: 3, // Optional, Android Only
-    isRTL: false // Optional, Android Only
+    isRTL: false, // Optional, Android Only
+    view: <View>someView // Optional, Android Only, default to topmost().currentPage
   };
 
   snackbar.action(options).then((args) => {
@@ -62,7 +63,7 @@ public showAction() {
 
 Show a simple SnackBar (color args will only work on Android)
 
-- **simple(snackText: string, textColor?: string, backgroundColor?: string, maxLines?: number, isRTL?: boolean): Promise<any>**
+- **simple(snackText: string, textColor?: string, backgroundColor?: string, maxLines?: number, isRTL?: boolean, view?: View): Promise<any>**
 
 Show a SnackBar with Action.
 
@@ -82,3 +83,4 @@ Manually dismiss an active SnackBar
 - **backgroundColor: string**
 - **maxLines: number**
 - **isRTL: boolean**
+- **view: View**
