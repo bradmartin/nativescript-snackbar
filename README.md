@@ -1,7 +1,5 @@
-# NativeScript Snackbar :lollipop: :chocolate_bar:
-
 <a align="center" href="https://www.npmjs.com/package/nativescript-snackbar">
-    <h3 align="center">NativeScript-Snackbar</h3>
+    <h2 align="center">NativeScript-Snackbar 🍭 🍫 🍦</h2>
 </a>
 <h4 align="center">NativeScript plugin for Material Design Floating Action Button UI component.</h4>
 
