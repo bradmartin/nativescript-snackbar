@@ -41,7 +41,7 @@ export class HelloWorldModel extends Observable {
   }
 
   public showAction() {
-    let options: SnackBarOptions = {
+    const options: SnackBarOptions = {
       actionText: this.get('actionText'),
       textColor: '#fff',
       actionTextColor: this._colors[
