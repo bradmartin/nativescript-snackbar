@@ -3,7 +3,7 @@
 import { Color } from 'tns-core-modules/color';
 import { topmost } from 'tns-core-modules/ui/frame';
 import { SnackBarOptions, DismissReasons } from './snackbar.common';
-import { View } from "ui/core/view";
+import { View } from 'tns-core-modules/ui/core/view';
 export * from './snackbar.common';
 
 export class SnackBar {
@@ -30,7 +30,8 @@ export class SnackBar {
           return;
         }
 
-        const attachToView = (view && view.android) || topmost().currentPage.android;
+        const attachToView =
+          (view && view.android) || topmost().currentPage.android;
         this._snackbar = android.support.design.widget.Snackbar.make(
           attachToView,
           snackText,
@@ -88,7 +89,9 @@ export class SnackBar {
         options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
-        const attachToView = (options.view && options.view.android) || topmost().currentPage.android;
+        const attachToView =
+          (options.view && options.view.android) ||
+          topmost().currentPage.android;
         this._snackbar = android.support.design.widget.Snackbar.make(
           attachToView,
           options.snackText,
