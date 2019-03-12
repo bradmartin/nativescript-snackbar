@@ -39,3 +39,12 @@ demo/report/report.html
 demo/report/stats.json
 !demo/webpack.config.js
 !demo/karma.conf.js
+
+## demo-vue app
+!demo-vue/**/*.js
+
+## demo-angular app
+!demo-angular/webpack.config.js
+
+
+*.tgz
