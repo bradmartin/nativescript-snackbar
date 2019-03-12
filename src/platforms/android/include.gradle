@@ -10,5 +10,5 @@ dependencies {
        supportVer = supportVersion
       }
 
-     compile "com.android.support:design:$supportVer"
+     implementation "com.android.support:design:$supportVer"
 }
