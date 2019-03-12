@@ -1,5 +1,22 @@
 # Change Log
 
+## [4.1.2](https://github.com/bradmartin/nativescript-snackbar/tree/4.1.2) (2019-03-12)
+[Full Changelog](https://github.com/bradmartin/nativescript-snackbar/compare/4.0.0...4.1.2)
+
+**Implemented enhancements:**
+
+- Make Android anchor for snackbar configurable [\#38](https://github.com/bradmartin/nativescript-snackbar/issues/38)
+
+**Closed issues:**
+
+- Crash application iOS [\#35](https://github.com/bradmartin/nativescript-snackbar/issues/35)
+- Error occurred when build release version in Android Studio [\#34](https://github.com/bradmartin/nativescript-snackbar/issues/34)
+
+**Merged pull requests:**
+
+- view property declarations and docs [\#40](https://github.com/bradmartin/nativescript-snackbar/pull/40) ([webleaf](https://github.com/webleaf))
+- Ability to set the View to which the snackbar will be attached [\#39](https://github.com/bradmartin/nativescript-snackbar/pull/39) ([webleaf](https://github.com/webleaf))
+
 ## [4.0.0](https://github.com/bradmartin/nativescript-snackbar/tree/4.0.0) (2018-11-15)
 [Full Changelog](https://github.com/bradmartin/nativescript-snackbar/compare/3.2.0...4.0.0)
 
