@@ -4,11 +4,7 @@ branches:
 
 stages:
   - lint
-  - build core
-  - webpack core
-  - webpack angular
-  - webpack vue
-  - tests
+  - builds
 
 matrix:
   include:
@@ -16,13 +12,12 @@ matrix:
     - stage: lint
       language: node_js
       os: linux
-      node_js: "8"
+      node_js: '8'
       script:
         - cd src && npm run ci.tslint
         - cd ../demo && npm run ci.tslint
-    # Build Core App
-    - stage: build core
-      ## Android
+    - stage: builds
+      ## Android Build
       os: linux
       env:
         - OS="Android28"
@@ -32,22 +27,20 @@ matrix:
       script:
         - cd src && npm i && npm run tsc
         - cd ../demo && tns build android
-    ## iOS
+    ## iOS Build
     - os: osx
       env:
         - OS="iOS12.0"
-        - Xcode="10.0"
-      osx_image: xcode10
+        - Xcode="10.1"
+      osx_image: xcode10.1
       language: node_js
-      node_js: "8"
+      node_js: '8'
       jdk: oraclejdk8
       script:
         - cd src && npm i && npm run tsc
         - cd ../demo && tns build ios
-    # Webpack Core App
-    - stage: webpack core
-      ## Android Core
-      os: linux
+      ## Android Webpack Core
+    - os: linux
       language: android
       env:
         - OS="Android28"
@@ -56,24 +49,22 @@ matrix:
       script:
         - cd demo && npm run build.plugin
         - npm i && tns build android --bundle --env.uglify
-    # iOS Core
+    # iOS Webpack Core
     - os: osx
       env:
         - OS="iOS12.0"
-        - Xcode="10.0"
-      osx_image: xcode10
+        - Xcode="10.1"
+      osx_image: xcode10.1
       language: node_js
-      node_js: "8"
+      node_js: '8'
       jdk: oraclejdk8
       script:
         - cd demo && npm run build.plugin
         - npm i && tns build ios --bundle --env.uglify
-    # Webpack Angular
-    - stage: webpack angular
-      ## Android
-      env:
+      ## Android Angular Webpack
+    - env:
         - OS="Android28"
-      before_install: "nvm install 8.11.4"
+      before_install: 'nvm install 8.11.4'
       jdk: oraclejdk8
       language: android
       os: linux
@@ -81,46 +72,43 @@ matrix:
         - cd src && npm run build && npm pack
         - cd ../demo-angular && tns plugin add ../src/*.tgz
         - npm i && tns build android --bundle --env.uglify --env.aot
-    ## iOS
+    ## iOS Angular Webpack
     - env:
         - OS="iOS12.0"
-        - Xcode="10.0"
+        - Xcode="10.1"
       jdk: oraclejdk8
       language: node_js
-      node_js: "8"
+      node_js: '8'
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.1
       script:
         - cd src && npm run build && npm pack
         - cd ../demo-angular && tns plugin add ../src/*.tgz
         - npm i && tns build ios --bundle --env.uglify --env.aot
-    # Webpack Vue App
-    - stage: webpack vue
-      ## Android
-      env:
+      ## Android Vue Webpack
+    - env:
         - OS="Android28"
-      before_install: "nvm install 8.11.4"
+      before_install: 'nvm install 8.11.4'
       jdk: oraclejdk8
       language: android
       os: linux
       script:
         - cd demo-vue && npm run build.plugin
         - npm i && tns build android --bundle --env.uglify
-    ## iOS
+    ## iOS Vue Webpack
     - env:
         - OS="iOS12.0"
-        - Xcode="10.0"
+        - Xcode="10.1"
       jdk: oraclejdk8
       language: node_js
-      node_js: "8"
+      node_js: '8'
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.1
       script:
         - cd demo-vue && npm run build.plugin
         - npm i && tns build ios --bundle --env.uglify
-    # Tests
-    - stage: tests
-      os: linux
+    ## Android Test
+    - os: linux
       language: android
       dist: precise
       jdk: oraclejdk8
@@ -135,14 +123,15 @@ matrix:
       script:
         - cd src && npm i && npm run tsc && npm run tslint && cd ../demo && tns build android
         - travis_wait travis_retry tns test android --justlaunch
+    ## iOS Test
     - os: osx
       language: node_js
-      node_js: "8"
+      node_js: '8'
       jdk: oraclejdk8
       env:
         - OS="iOS12.0"
-        - Xcode="10.0"
-      osx_image: xcode10
+        - Xcode="10.1"
+      osx_image: xcode10.1
       script:
         - cd src && npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios
         - travis_wait travis_retry tns test ios --justlaunch
