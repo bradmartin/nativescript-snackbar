@@ -1,6 +1,6 @@
 {
   "name": "nativescript-snackbar",
-  "version": "6.0.0",
+  "version": "6.0.0-androidx",
   "description": "A NativeScript plugin for the Material Design SnackBar.",
   "main": "snackbar",
   "typings": "index.d.ts",

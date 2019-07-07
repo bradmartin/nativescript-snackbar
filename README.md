@@ -29,7 +29,7 @@
 
 #### NativeScript 6x+
 
-`tns plugin add nativescript-snackbar@androidx` once NS 6.0 is published this version will be the default version from the master branch.
+`tns plugin add nativescript-snackbar@next` once NS 6.0 is published this version will be the default version from the master branch.
 
 #### NativeScript 5.4 and older
 
