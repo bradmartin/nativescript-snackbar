@@ -1,5 +1,3 @@
-/// <reference path="./typings/objc!SSSnackbar.d.ts" />
-
 import { DismissReasons, SnackBarOptions } from './snackbar.common';
 export * from './snackbar.common';
 

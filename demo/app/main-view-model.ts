@@ -29,6 +29,8 @@ export class HelloWorldModel extends Observable {
   }
 
   public showSimple() {
+    // this._SnackBar = new SnackBar();
+
     this._SnackBar
       .simple('Hello from the 🍫 SnackBar 👋')
       .then(args => {
