@@ -1,5 +1,6 @@
-<page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-    <action-bar title="NativeScript-Snackbar" />
+<page xmlns="http://schemas.nativescript.org/tns.xsd" navigatedTo="onPageNavigatedTo">
+    <ActionBar title="SnackBar" icon="">
+    </ActionBar>
     <scroll-view>
         <stack-layout padding="10">
             <button text="Simple Snackbar" tap="{{ showSimple }}" />
