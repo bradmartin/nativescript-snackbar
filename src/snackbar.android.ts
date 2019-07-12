@@ -4,8 +4,26 @@ import { topmost } from 'tns-core-modules/ui/frame';
 import { DismissReasons, SnackBarOptions } from './snackbar.common';
 export * from './snackbar.common';
 
+declare const global: any;
+
+const Snackbar_Namespace = useAndroidX()
+  ? com.google.android.material.snackbar
+  : (android.support as any).design.widget;
+const SNACKBAR_TEXT_ID = useAndroidX()
+  ? (com.google.android.material as any).R.id.snackbar_text
+  : (android.support as any).design.R.id.snackbar_text;
+
+function useAndroidX() {
+  return (
+    global.androidx &&
+    com.google &&
+    com.google.android &&
+    com.google.android.material
+  );
+}
+
 export class SnackBar {
-  private _snackbar: com.google.android.material.snackbar.Snackbar;
+  private _snackbar: any;
 
   constructor() {}
 
@@ -27,7 +45,7 @@ export class SnackBar {
 
         const attachToView =
           (view && view.android) || topmost().currentPage.android;
-        this._snackbar = com.google.android.material.snackbar.Snackbar.make(
+        this._snackbar = Snackbar_Namespace.Snackbar.make(
           attachToView,
           snackText,
           3000
@@ -46,7 +64,7 @@ export class SnackBar {
         }
 
         // determine which snackbar namespace is used for the correct callback implementation
-        const cb = new TNS_MaterialDesignBaseCallback(new WeakRef(this));
+        const cb = new TNS_SnackbarBaseCallback(new WeakRef(this));
         cb.resolve = resolve; // handles the resolve of the promise
         this._snackbar.addCallback(cb);
 
@@ -54,7 +72,7 @@ export class SnackBar {
         if (maxLines) {
           const sbView = this._snackbar.getView();
           const tv = sbView.findViewById(
-            (com.google.android.material as any).R.id.snackbar_text
+            SNACKBAR_TEXT_ID
           ) as android.widget.TextView;
           tv.setMaxLines(maxLines);
         }
@@ -64,7 +82,7 @@ export class SnackBar {
         if (isRTL === true) {
           const sbView = this._snackbar.getView();
           const tv = sbView.findViewById(
-            (com.google.android.material as any).R.id.snackbar_text
+            SNACKBAR_TEXT_ID
           ) as android.widget.TextView;
 
           tv.setLayoutDirection(android.view.View.LAYOUT_DIRECTION_RTL);
@@ -86,7 +104,7 @@ export class SnackBar {
         const attachToView =
           (options.view && options.view.android) ||
           topmost().currentPage.android;
-        this._snackbar = com.google.android.material.snackbar.Snackbar.make(
+        this._snackbar = Snackbar_Namespace.Snackbar.make(
           attachToView,
           options.snackText,
           options.hideDelay
@@ -130,7 +148,7 @@ export class SnackBar {
           const sbView = this._snackbar.getView();
 
           const tv = sbView.findViewById(
-            (com.google.android.material as any).R.id.snackbar_text
+            SNACKBAR_TEXT_ID
           ) as android.widget.TextView;
 
           tv.setMaxLines(options.maxLines);
@@ -142,13 +160,13 @@ export class SnackBar {
           const sbView = this._snackbar.getView();
 
           const tv = sbView.findViewById(
-            (com.google.android.material as any).R.id.snackbar_text
+            SNACKBAR_TEXT_ID
           ) as android.widget.TextView;
 
           tv.setLayoutDirection(android.view.View.LAYOUT_DIRECTION_RTL);
         }
 
-        const cb = new TNS_MaterialDesignBaseCallback(new WeakRef(this));
+        const cb = new TNS_SnackbarBaseCallback(new WeakRef(this));
         cb.resolve = resolve; // handles the resolve of the promise
         this._snackbar.addCallback(cb);
 
@@ -186,24 +204,19 @@ export class SnackBar {
   public _getReason(value: number) {
     switch (value) {
       // Indicates that the Snackbar was dismissed via a swipe.
-      case com.google.android.material.snackbar.BaseTransientBottomBar
-        .BaseCallback.DISMISS_EVENT_SWIPE:
+      case 0:
         return DismissReasons.SWIPE;
       // Indicates that the Snackbar was dismissed via an action click.
-      case com.google.android.material.snackbar.BaseTransientBottomBar
-        .BaseCallback.DISMISS_EVENT_ACTION:
+      case 1:
         return DismissReasons.ACTION;
       // Indicates that the Snackbar was dismissed via a swipe.
-      case com.google.android.material.snackbar.BaseTransientBottomBar
-        .BaseCallback.DISMISS_EVENT_TIMEOUT:
+      case 2:
         return DismissReasons.TIMEOUT;
       // Indicates that the Snackbar was dismissed via a call to dismiss().
-      case com.google.android.material.snackbar.BaseTransientBottomBar
-        .BaseCallback.DISMISS_EVENT_MANUAL:
+      case 3:
         return DismissReasons.MANUAL;
       // Indicates that the Snackbar was dismissed from a new Snackbar being shown.
-      case com.google.android.material.snackbar.BaseTransientBottomBar
-        .BaseCallback.DISMISS_EVENT_CONSECUTIVE:
+      case 4:
         return DismissReasons.CONSECUTIVE;
       default:
         return DismissReasons.UNKNOWN;
@@ -220,21 +233,19 @@ export class SnackBar {
 
   private _setTextColor(color) {
     if (color) {
+      console.log('setting text color...', SNACKBAR_TEXT_ID);
       const mainTextView = this._snackbar
         .getView()
-        .findViewById(
-          (com.google.android.material as any).R.id.snackbar_text
-        ) as android.widget.TextView;
+        .findViewById(SNACKBAR_TEXT_ID) as android.widget.TextView;
+      console.log('textview', mainTextView);
 
       mainTextView.setTextColor(new Color(color).android);
     }
   }
 }
 
-export class TNS_MaterialDesignBaseCallback extends com.google.android.material
-  .snackbar.BaseTransientBottomBar.BaseCallback<
-  com.google.android.material.snackbar.Snackbar
-> {
+export class TNS_SnackbarBaseCallback extends Snackbar_Namespace
+  .BaseTransientBottomBar.BaseCallback<any> {
   public resolve = null;
   private _owner: WeakRef<SnackBar>;
 
@@ -244,16 +255,9 @@ export class TNS_MaterialDesignBaseCallback extends com.google.android.material
     return global.__native(this);
   }
 
-  onDismissed(
-    snackbar: com.google.android.material.snackbar.Snackbar,
-    event: number
-  ) {
+  onDismissed(snackbar: any, event: number) {
     // if the dismiss was not caused by the action button click listener
-    if (
-      event !==
-      com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback
-        .DISMISS_EVENT_ACTION
-    ) {
+    if (event !== 1) {
       this.resolve({
         command: 'Dismiss',
         reason: this._owner.get()._getReason(event),
@@ -262,7 +266,7 @@ export class TNS_MaterialDesignBaseCallback extends com.google.android.material
     }
   }
 
-  onShown(snackbar: com.google.android.material.snackbar.Snackbar) {
+  onShown(snackbar: any) {
     // console.log('callback onShown fired');
   }
 }
