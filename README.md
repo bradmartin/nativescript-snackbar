@@ -1,35 +1,25 @@
+<h1 align="center">** DEPRECATION NOTICE **</h1>
+
+## Package has been deprecated as of July 12th, 2019.
+
+Please use the version published [by nStudio](https://github.com/nstudio/nativescript-snackbar).
+
+### Installation:
+
+`tns plugin add @nstudio/nativescript-snackbar`
+
+<hr>
+
 <a align="center" href="https://www.npmjs.com/package/nativescript-snackbar">
     <h2 align="center">NativeScript-Snackbar 🍭 🍫 🍦</h2>
 </a>
-<h4 align="center">NativeScript plugin for Material Design Floating Action Button UI component.</h4>
-
-<p align="center">
- <a href="https://www.npmjs.com/package/nativescript-snackbar">
-        <img src="https://img.shields.io/npm/v/nativescript-snackbar.svg" alt="npm">
-    </a>
-    <a href="https://www.npmjs.com/package/nativescript-snackbar">
-        <img src="https://img.shields.io/npm/dt/nativescript-snackbar.svg?label=npm%20downloads" alt="npm">
-    </a>
-     <a href="https://travis-ci.org/bradmartin/nativescript-snackbar">
-        <img src="https://travis-ci.org/bradmartin/nativescript-snackbar.svg?branch=master" alt="travis build">
-    </a>
-    <a href="https://github.com/bradmartin/nativescript-snackbar/stargazers">
-        <img src="https://img.shields.io/github/stars/bradmartin/nativescript-snackbar.svg" alt="stars">
-    </a>
-    <a href="https://paypal.me/bradwayne88">
-        <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
-    </a>
-</p>
+<h4 align="center">NativeScript plugin for Material Design SnackBar component.</h4>
 
 ## Demo
 
 ![Snackbar](./screens/snackbar.gif)
 
 ## Installation
-
-#### NativeScript 6x+
-
-`tns plugin add nativescript-snackbar@next` once NS 6.0 is published this version will be the default version from the master branch.
 
 #### NativeScript 5.4 and older
 
