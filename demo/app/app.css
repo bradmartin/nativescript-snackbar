@@ -1,6 +1,6 @@
 ﻿ActionBar {
-  color: #fff;
-  background-color: #7a25db;
+  color: #333;
+  background-color: #fff;
 }
 
 .title {
@@ -9,8 +9,7 @@
   margin: 20;
 }
 
-button {
-  font-size: 16;
+.btn-yellow {
   horizontal-align: center;
   background-color: #fff000;
   color: #111;

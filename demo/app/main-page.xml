@@ -1,9 +1,15 @@
 <page xmlns="http://schemas.nativescript.org/tns.xsd" navigatedTo="onPageNavigatedTo">
-    <ActionBar title="SnackBar" icon="">
+    <ActionBar title="SnackBar Demo" icon="">
+        <ActionBar.actionItems>
+            <ActionItem icon="res://nstudio" tap="{{ nStudioIconTap }}" ios.position="right" />
+        </ActionBar.actionItems>
     </ActionBar>
-    <scroll-view>
-        <stack-layout padding="10">
-            <button text="Simple Snackbar" tap="{{ showSimple }}" />
+
+    <ScrollView row="0" padding="10">
+        <StackLayout horizontalAlignment="center">
+            <Label text="Made with ❤️ by nStudio" class="title" textWrap="true" />
+
+            <button text="Simple Snackbar" class="btn-yellow" tap="{{ showSimple }}" />
 
             <Label text="" width="95%" backgroundColor="#fff000" height="2" margin="5" textWrap="true" />
             <Label text="Action Example will pick random colors for the snackbar color and the action text color. Be sure to view the API for the methods." fontSize="18" marginTop="10" textWrap="true" />
@@ -18,13 +24,12 @@
                 <TextField hint="ActionButton Text" text="{{ actionText }}" />
             </DockLayout>
 
-            <button text="Action Snackbar" tap="{{ showAction }}" />
-
+            <button text="Action Snackbar" class="btn-yellow" tap="{{ showAction }}" />
 
             <Label text="" width="95%" backgroundColor="#fff000" height="2" margin="5" textWrap="true" />
 
             <Label text="Promise data from last snackbar..."/>
             <Label text="{{ jsonResult }}" textWrap="true" />
-        </stack-layout>
-    </scroll-view>
+        </StackLayout>
+    </ScrollView>
 </page>

@@ -1,6 +1,8 @@
 import { SnackBar, SnackBarOptions } from 'nativescript-snackbar';
 import { Observable } from 'tns-core-modules/data/observable';
+import { confirm } from 'tns-core-modules/ui/dialogs';
 import { Page } from 'tns-core-modules/ui/page';
+import { openUrl } from 'tns-core-modules/utils/utils';
 
 export class HelloWorldModel extends Observable {
   private _SnackBar: SnackBar;
@@ -28,6 +30,19 @@ export class HelloWorldModel extends Observable {
     this.jsonResult = '';
   }
 
+  nStudioIconTap() {
+    confirm({
+      message:
+        'nStudio, LLC. specializes in custom software applications ranging from mobile, web, desktop, server and more. Would you like to visit nstudio.io?',
+      okButtonText: 'Yes',
+      cancelButtonText: 'Close'
+    }).then(result => {
+      if (result) {
+        openUrl('https://nstudio.io');
+      }
+    });
+  }
+
   public showSimple() {
     // this._SnackBar = new SnackBar();
 
@@ -43,6 +58,8 @@ export class HelloWorldModel extends Observable {
   }
 
   public showAction() {
+    console.log('action snackbar');
+
     const options: SnackBarOptions = {
       actionText: this.get('actionText'),
       textColor: '#fff',
@@ -55,6 +72,8 @@ export class HelloWorldModel extends Observable {
       snackText: this.get('snackText'),
       hideDelay: 3500
     };
+
+    console.log('snackbar', this._SnackBar);
 
     this._SnackBar.action(options).then(args => {
       console.log('SnackBar.action() result', args);
